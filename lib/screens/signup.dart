@@ -77,16 +77,30 @@ class _signupScreenState extends State<signupScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextField(
-
-
-
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.eighteen_mp
-                                ,color: plte.iconColor,),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(30.0))
 
-                              )
+
+                              prefixIcon: Icon(Icons.account_circle_outlined,color: plte.iconColor,),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                              contentPadding: EdgeInsets.all(8.0),
+                            hintText: "Enter your Email",
+                          ),
+                        ),
+                        SizedBox(height: 7,),
+                        TextField(
+                          obscureText: true,
+                          obscuringCharacter: '0',
+                          decoration: InputDecoration(
+
+
+                            prefixIcon: Icon(Icons.adjust_rounded,color: plte.iconColor,),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                            ),
+                            contentPadding: EdgeInsets.all(8.0),
+                              hintText: "Enter Password",
                           ),
                         ),
                       ],
