@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uscb/screens/mainscreen.dart';
 import 'login.dart';
 import 'pallete.dart';
 
@@ -163,7 +164,11 @@ class _signupScreenState extends State<signupScreen> {
                           child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
                           color: plte.btnColor,
 
-                            onPressed: (){})
+                            onPressed: (){
+                             Navigator.push(context, MaterialPageRoute(builder: (context){
+                               return mainScreen();
+                             }));
+                            })
                       ],
                     ),
                   )

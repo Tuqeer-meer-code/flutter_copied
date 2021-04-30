@@ -49,19 +49,56 @@ class _mainScreenState extends State<mainScreen> {
               ),
             ),
           ),
-          Positioned(top: 200,left: 0,
+          Positioned(
+            top: 200,
+            left: 0,
             right: 0,
             child: Container(
-                height: 400,
+              height: 400,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [IconButton(icon: Icon(Icons.app_registration),color:Colors.white,splashColor: plte.activateColor, onPressed: (){
-
-                })],
-              ),
-
+                children: [
+                  IconButton(
+                      icon: Icon(Icons.app_registration),
+                      color: Colors.white,
+                      iconSize: 70,
+                      splashColor: plte.btnColor,
+                      onPressed: () {}),
+                  Text(
+                    "Register Complaint",
+                    style: TextStyle(
+                        color: plte.textColor, fontWeight: FontWeight.bold),
                   ),
-                )
+                  SizedBox(
+                    height: 15,
+                  ),
+                  IconButton(
+                      icon: Icon(Icons.info),
+                      color: Colors.white,
+                      iconSize: 70,
+                      splashColor: plte.btnColor,
+                      onPressed: () {}),
+                  Text(
+                    "Information",
+                    style: TextStyle(
+                        color: plte.textColor, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 15,),
+                  IconButton(
+                      icon: Icon(Icons.recommend),
+                      color: Colors.white,
+                      iconSize: 70,
+                      splashColor: plte.btnColor,
+                      onPressed: () {}),
+                  Text(
+                    "Response",
+                    style: TextStyle(
+                        color: plte.textColor, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
