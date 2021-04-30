@@ -7,6 +7,7 @@ class signupScreen extends StatefulWidget {
 
 class _signupScreenState extends State<signupScreen> {
   @override
+  int group=1;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: plte.backgroundColor,
@@ -88,7 +89,7 @@ class _signupScreenState extends State<signupScreen> {
                             hintText: "Enter your Email",
                           ),
                         ),
-                        SizedBox(height: 7,),
+                        SizedBox(height: 10,),
                         TextField(
                           obscureText: true,
                           obscuringCharacter: '0',
@@ -103,6 +104,49 @@ class _signupScreenState extends State<signupScreen> {
                               hintText: "Enter Password",
                           ),
                         ),
+                        SizedBox(height: 10,)
+                        ,
+                        TextField(
+                          obscureText: true,
+                          obscuringCharacter: '0',
+                          decoration: InputDecoration(
+
+
+                            prefixIcon: Icon(Icons.adjust_rounded,color: plte.iconColor,),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                            ),
+                            contentPadding: EdgeInsets.all(8.0),
+                            hintText: "Confirm Password",
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Radio(
+                            value: 1,
+                              activeColor: plte.btnColor,
+                              groupValue: group,
+                              onChanged: (t){
+                              setState(() {
+                                group=t;
+                              });
+                              },
+                            ),
+                            Text("Male"),
+                            Radio(
+                              value: 2,
+                              groupValue: group,
+                              activeColor: plte.btnColor,
+                              onChanged: (t){
+                                setState(() {
+                                  group=t;
+                                });
+                              },
+                            ),
+                            Text("Female")
+                          ],
+                        )
                       ],
                     ),
                   )
