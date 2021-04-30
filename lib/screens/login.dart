@@ -110,6 +110,7 @@ class _loginScreenState extends State<loginScreen> {
               SizedBox(height: 10,)
               ,
                         MaterialButton(
+                          elevation: 10,
                             minWidth: 100,
                             splashColor: plte.textColor,
                             shape: StadiumBorder(),

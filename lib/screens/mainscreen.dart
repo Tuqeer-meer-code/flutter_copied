@@ -98,6 +98,7 @@ class _mainScreenState extends State<mainScreen> {
                   Text(
                     "Response",
                     style: TextStyle(
+
                         color: plte.textColor, fontWeight: FontWeight.bold),
                   ),
                 ],

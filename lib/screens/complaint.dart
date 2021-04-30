@@ -7,6 +7,7 @@ class complaintScreen extends StatefulWidget {
 }
 
 class _complaintScreenState extends State<complaintScreen> {
+  String valueC1="";
   @override
   Widget build(BuildContext context) {
 
@@ -37,15 +38,28 @@ Widget getListView(){
       child: ListView(
         children: [
           Card(
+            elevation: 15,
+            color: plte.iconColor,
             shape: StadiumBorder(),
             margin: EdgeInsets.all(10.0),
             child: ListTile(
-            leading: Icon(Icons.arrow_forward),
+            leading: Icon(Icons.arrow_forward,color: Colors.white,),
               subtitle: dropDownC1(),
 
             ),
-          )
+          ),
+          Card(
+            elevation: 15,
+            color: plte.iconColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: Icon(Icons.album_outlined,color: Colors.white,),
+              subtitle: textField("Enter Consumer Number"),
+              
 
+            ),
+          ),
         ],
       ),
     ),
@@ -54,32 +68,40 @@ Widget getListView(){
 dropDownC1(){
   return
     DropdownButton<String>(
+
       dropdownColor: plte.backgroundColor,
     items: [DropdownMenuItem<String>(value: "1",
-    child: Center(
-      child: Text("Gas",style: TextStyle(color: plte.textColor),),
-    ),),
+    child: Text("Gas",style: TextStyle(color: plte.textColor),
+    ),
+    ),
       DropdownMenuItem<String>(value: "2",
-        child: Center(
-          child: Text("Internet",style: TextStyle(color: plte.textColor)),
-        ),),
+        child: Text("Internet",style: TextStyle(color: plte.textColor)),),
       DropdownMenuItem<String>(value: "3",
-        child: Center(
-          child: Text("Water",style: TextStyle(color: plte.textColor)),
-        ),),
+        child: Text("Water",style: TextStyle(color: plte.textColor)),),
       DropdownMenuItem<String>(value: "4",
-        child: Center(
-          child: Text("Electricity",style: TextStyle(color: plte.textColor)),
-        ),),
+        child: Text("Electricity",style: TextStyle(color: plte.textColor)),),
       DropdownMenuItem<String>(value: "5",
-        child: Center(
-          child: Text("Garbage",style: TextStyle(color: plte.textColor)),
-        ),)],
+        child: Text("Garbage",style: TextStyle(color: plte.textColor)),)],
     onChanged: (_value)=>{
-
+          valueC1=_value
     },
-      hint: Text("Select Catogery",),
+      hint: Text("Select Catogery",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
   );
 
+}
+textField(String title){
+return
+  TextField(
+    cursorColor: plte.backgroundColor,
+    decoration: new InputDecoration(
+    border: InputBorder.none,
+    focusedBorder: InputBorder.none,
+    enabledBorder: InputBorder.none,
+    errorBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
+    hintText: title,hintStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)
+    )
+  );
+    
 }
 }

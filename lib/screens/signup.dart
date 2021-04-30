@@ -158,6 +158,7 @@ class _signupScreenState extends State<signupScreen> {
                         ),
                         SizedBox(height: 10,),
                         MaterialButton(
+                          elevation: 10,
                             minWidth: 100,
                           splashColor: plte.textColor,
                           shape: StadiumBorder(),
