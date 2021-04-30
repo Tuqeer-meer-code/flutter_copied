@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uscb/screens/mainscreen.dart';
 import 'package:uscb/screens/signup.dart';
 import 'pallete.dart';
 class loginScreen extends StatefulWidget {
@@ -112,10 +113,14 @@ class _loginScreenState extends State<loginScreen> {
                             minWidth: 100,
                             splashColor: plte.textColor,
                             shape: StadiumBorder(),
-                            child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                            child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
                             color: plte.btnColor,
 
-                            onPressed: (){})
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return mainScreen();
+                              }));
+                            })
                       ],
                     ),
                   )
