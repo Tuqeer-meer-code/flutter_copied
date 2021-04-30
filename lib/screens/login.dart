@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:uscb/screens/signup.dart';
 import 'pallete.dart';
-
-class signupScreen extends StatefulWidget {
+class loginScreen extends StatefulWidget {
   @override
-  _signupScreenState createState() => _signupScreenState();
+  _loginScreenState createState() => _loginScreenState();
 }
 
-class _signupScreenState extends State<signupScreen> {
+class _loginScreenState extends State<loginScreen> {
   @override
-  int group = 1;
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: plte.backgroundColor,
@@ -30,7 +27,7 @@ class _signupScreenState extends State<signupScreen> {
                     children: [
                       RichText(
                         text: TextSpan(
-                            text: "Welcome to",
+                            text: "Welcome back to",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: plte.textColor,
@@ -48,7 +45,7 @@ class _signupScreenState extends State<signupScreen> {
                         height: 5,
                       ),
                       Text(
-                        "SignUp to continue",
+                        "LogIn to continue",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       )
@@ -59,7 +56,7 @@ class _signupScreenState extends State<signupScreen> {
           Positioned(
               top: 200,
               child: Container(
-                  height: 300,
+                  height: 200,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
@@ -84,7 +81,7 @@ class _signupScreenState extends State<signupScreen> {
                             ),
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
+                              BorderRadius.all(Radius.circular(30.0)),
                             ),
                             contentPadding: EdgeInsets.all(8.0),
                             hintText: "Enter your Email",
@@ -95,7 +92,7 @@ class _signupScreenState extends State<signupScreen> {
                         ),
                         TextField(
                           obscureText: true,
-                          obscuringCharacter: '0',
+                          obscuringCharacter: '*',
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.adjust_rounded,
@@ -103,65 +100,20 @@ class _signupScreenState extends State<signupScreen> {
                             ),
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
+                              BorderRadius.all(Radius.circular(30.0)),
                             ),
                             contentPadding: EdgeInsets.all(8.0),
                             hintText: "Enter Password",
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          obscureText: true,
-                          obscuringCharacter: '0',
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.adjust_rounded,
-                              color: plte.iconColor,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Confirm Password",
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Radio(
-                              value: 1,
-                              activeColor: plte.btnColor,
-                              groupValue: group,
-                              onChanged: (t) {
-                                setState(() {
-                                  group = t;
-                                });
-                              },
-                            ),
-                            Text("Male"),
-                            Radio(
-                              value: 2,
-                              groupValue: group,
-                              activeColor: plte.btnColor,
-                              onChanged: (t) {
-                                setState(() {
-                                  group = t;
-                                });
-                              },
-                            ),
-                            Text("Female")
-                          ],
-                        ),
-                        SizedBox(height: 10,),
+              SizedBox(height: 10,)
+              ,
                         MaterialButton(
                             minWidth: 100,
-                          splashColor: plte.textColor,
-                          shape: StadiumBorder(),
-                          child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
-                          color: plte.btnColor,
+                            splashColor: plte.textColor,
+                            shape: StadiumBorder(),
+                            child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                            color: plte.btnColor,
 
                             onPressed: (){})
                       ],
@@ -170,28 +122,28 @@ class _signupScreenState extends State<signupScreen> {
               )
           ),
           Positioned(
-              top: 500,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Text("Already have an account?",style: TextStyle(color: Colors.white),),
-                  ),
+            top: 410,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 70),
+                  child: Text("Don't have an account?",style: TextStyle(color: Colors.white),),
+                ),
 
-                   TextButton(
+                TextButton(
 
-                  child: Text("Log In"),
-                    onPressed: (){
+                  child: Text("Sign In"),
+                  onPressed: (){
                     setState(() {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return loginScreen();
-                    }));
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return signupScreen();
+                      }));
                     });
-                    },
-                  ),
-                ],
-              ),
-            )
+                  },
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
