@@ -165,7 +165,30 @@ class _signupScreenState extends State<signupScreen> {
                             onPressed: (){})
                       ],
                     ),
-                  )))
+                  )
+              )
+          ),
+          Positioned(
+              top: 500,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50),
+                    child: Text("Already have an account?",style: TextStyle(color: Colors.white),),
+                  ),
+
+                   TextButton(
+
+                  child: Text("Log In"),
+                    onPressed: (){
+                    setState(() {
+
+                    });
+                    },
+                  ),
+                ],
+              ),
+            )
         ],
       ),
     );
