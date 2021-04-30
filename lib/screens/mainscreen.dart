@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'complaint.dart';
 import 'pallete.dart';
 
 class mainScreen extends StatefulWidget {
@@ -63,7 +64,11 @@ class _mainScreenState extends State<mainScreen> {
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return complaintScreen();
+                        }));
+                      }),
                   Text(
                     "Register Complaint",
                     style: TextStyle(
