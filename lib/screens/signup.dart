@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pallete.dart';
+
 class signupScreen extends StatefulWidget {
   @override
   _signupScreenState createState() => _signupScreenState();
@@ -7,7 +8,8 @@ class signupScreen extends StatefulWidget {
 
 class _signupScreenState extends State<signupScreen> {
   @override
-  int group=1;
+  int group = 1;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: plte.backgroundColor,
@@ -19,17 +21,15 @@ class _signupScreenState extends State<signupScreen> {
               left: 0,
               child: Container(
                 height: 300,
-
                 child: Container(
                   padding: EdgeInsets.only(top: 90, left: 20),
                   color: Color(0xFF3b5999).withOpacity(.30),
-
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RichText(
                         text: TextSpan(
-                            text: "Welcome to" ,
+                            text: "Welcome to",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: plte.textColor,
@@ -55,17 +55,15 @@ class _signupScreenState extends State<signupScreen> {
                   ),
                 ),
               )),
-
           Positioned(
               top: 200,
               child: Container(
-                  height: 250,
+                  height: 300,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                       color: plte.backgroundColor,
                       borderRadius: BorderRadius.circular(15),
-
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.3),
@@ -79,42 +77,51 @@ class _signupScreenState extends State<signupScreen> {
                       children: [
                         TextField(
                           decoration: InputDecoration(
-
-
-                              prefixIcon: Icon(Icons.account_circle_outlined,color: plte.iconColor,),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                              ),
-                              contentPadding: EdgeInsets.all(8.0),
+                            prefixIcon: Icon(
+                              Icons.account_circle_outlined,
+                              color: plte.iconColor,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
+                            ),
+                            contentPadding: EdgeInsets.all(8.0),
                             hintText: "Enter your Email",
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextField(
                           obscureText: true,
                           obscuringCharacter: '0',
                           decoration: InputDecoration(
-
-
-                            prefixIcon: Icon(Icons.adjust_rounded,color: plte.iconColor,),
+                            prefixIcon: Icon(
+                              Icons.adjust_rounded,
+                              color: plte.iconColor,
+                            ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
                             contentPadding: EdgeInsets.all(8.0),
-                              hintText: "Enter Password",
+                            hintText: "Enter Password",
                           ),
                         ),
-                        SizedBox(height: 10,)
-                        ,
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextField(
                           obscureText: true,
                           obscuringCharacter: '0',
                           decoration: InputDecoration(
-
-
-                            prefixIcon: Icon(Icons.adjust_rounded,color: plte.iconColor,),
+                            prefixIcon: Icon(
+                              Icons.adjust_rounded,
+                              color: plte.iconColor,
+                            ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
                             contentPadding: EdgeInsets.all(8.0),
                             hintText: "Confirm Password",
@@ -124,13 +131,13 @@ class _signupScreenState extends State<signupScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Radio(
-                            value: 1,
+                              value: 1,
                               activeColor: plte.btnColor,
                               groupValue: group,
-                              onChanged: (t){
-                              setState(() {
-                                group=t;
-                              });
+                              onChanged: (t) {
+                                setState(() {
+                                  group = t;
+                                });
                               },
                             ),
                             Text("Male"),
@@ -138,22 +145,25 @@ class _signupScreenState extends State<signupScreen> {
                               value: 2,
                               groupValue: group,
                               activeColor: plte.btnColor,
-                              onChanged: (t){
+                              onChanged: (t) {
                                 setState(() {
-                                  group=t;
+                                  group = t;
                                 });
                               },
                             ),
                             Text("Female")
                           ],
-                        )
+                        ),
+                        SizedBox(height: 10,),
+                        RaisedButton(
+                          child: Text("Sign up",style: TextStyle(color: plte.textColor),),
+                          color: plte.btnColor,
+
+                            onPressed: (){})
                       ],
                     ),
-                  )
-
-
-              )
-          ) ],
+                  )))
+        ],
       ),
     );
   }
