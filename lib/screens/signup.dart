@@ -158,6 +158,7 @@ class _signupScreenState extends State<signupScreen> {
                         MaterialButton(
                             minWidth: 100,
                           splashColor: plte.textColor,
+                          shape: StadiumBorder(),
                           child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
                           color: plte.btnColor,
 
