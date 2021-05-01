@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uscb/screens/c_main.dart';
 import 'complaint.dart';
 import 'pallete.dart';
 
@@ -60,13 +61,14 @@ class _mainScreenState extends State<mainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
+
                       icon: Icon(Icons.app_registration),
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen();
+                          return c_main();
                         }));
                       }),
                   Text(
