@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:uscb/screens/complaint.dart';
 import 'pallete.dart';
+
 class c_main extends StatefulWidget {
   @override
   _c_mainState createState() => _c_mainState();
@@ -17,114 +17,96 @@ class _c_mainState extends State<c_main> {
         appBar: AppBar(
           title: Center(
               child: Text(
-                "Register Complaint",
-                style: TextStyle(color: plte.textColor),
-              )),
+            "Register Complaint",
+            style: TextStyle(color: plte.textColor,fontWeight: FontWeight.bold),
+          )),
           backgroundColor: plte.backgroundColor,
         ),
         body: Material(
-            elevation: 15,
-            color: plte.backgroundColor, child:
-        Container(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MaterialButton(
-                  elevation: 15,
-                  onPressed: (){}
-              )
-            ],
-          ),
-        )
-        ),
+
+            color: plte.backgroundColor,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  FlatButton.icon(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return complaintScreen();
+                      }));
+                    },
+                    icon: Icon(Icons.electrical_services,color: Colors.white,),
+                    label: Text("Electric",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                    color: plte.btnColor,
+                    shape: StadiumBorder(),
+                    splashColor: plte.backgroundColor,
+                    minWidth: 150,
+                    padding: EdgeInsets.all(10),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  FlatButton.icon(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return complaintScreen();
+                      }));
+                    },
+                    icon: Icon(Icons.games,color: Colors.white,),
+                    label: Text("Gas",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                    color: plte.btnColor,
+                    shape: StadiumBorder(),
+                    splashColor: plte.backgroundColor,
+                    minWidth: 150,
+                    padding: EdgeInsets.all(10),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  FlatButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.water_damage_outlined,color: Colors.white,),
+                    label: Text("Water",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                    color: plte.btnColor,
+                    shape: StadiumBorder(),
+                    splashColor: plte.backgroundColor,
+                    minWidth: 150,
+                    padding: EdgeInsets.all(10),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  FlatButton.icon(
+                    onPressed: () {
+
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return complaintScreen();
+                      }));
+                    },
+                    icon: Icon(Icons.signal_cellular_connected_no_internet_4_bar,color: Colors.white,),
+                    label: Text("Internet",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                    color: plte.btnColor,
+                    shape: StadiumBorder(),
+                    splashColor: plte.backgroundColor,
+                    minWidth: 150,
+                    padding: EdgeInsets.all(10),
+                  ),SizedBox(height: 15,),
+                  FlatButton.icon(
+                    onPressed: () {
+                    },
+                    icon: Icon(Icons.all_inclusive_sharp,color: Colors.white,),
+                    label: Text("Garbage",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                    color: plte.btnColor,
+                    shape: StadiumBorder(),
+                    splashColor: plte.backgroundColor,
+                    minWidth: 150,
+                    padding: EdgeInsets.all(10),
+                  ),              ],
+              ),
+            )),
       ),
     );
-}
-}
-Widget getListView() {
-  return Padding(
-    padding: const EdgeInsets.all(50),
-    child: Container(
-      child: ListView(
-        children: [
-          Card(
-            elevation: 15,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.all(10.0),
-            child: ListTile(
-              title: Text("Electric",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-              leading: Icon(
-                Icons.electrical_services,
-                color: Colors.white,
-              ),
-
-            ),
-            shadowColor: plte.activateColor,
-          ),
-          Card(
-            elevation: 15,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.all(10.0),
-            child: ListTile(
-              title: Text("Water",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-
-              leading: Icon(
-                Icons.water_damage_outlined,
-                color: Colors.white,
-              ),
-
-            ),
-            shadowColor: plte.activateColor,
-          ),
-          Card(
-            elevation: 15,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.all(10.0),
-            child: ListTile(
-              title: Text("Gas",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-
-              leading: Icon(
-                Icons.games_sharp,
-                color: Colors.white,
-              ),
-            ),
-            shadowColor: plte.activateColor,
-          ),
-          Card(
-            elevation: 15,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.all(10.0),
-            child: ListTile(
-              title: Text("Internet",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-              leading: Icon(
-                Icons.signal_cellular_connected_no_internet_4_bar,
-                color: Colors.white,
-              ),
-            ),
-            shadowColor: plte.activateColor,
-          ),
-
-          Card(
-            elevation: 15,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.all(10.0),
-            child: ListTile(
-              title: Text("Garbage",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-              leading: Icon(
-                Icons.all_inclusive_sharp,
-                color: Colors.white,
-              ),
-            ),
-            shadowColor: plte.activateColor,
-          )
-        ],
-      ),
-    ),
-  );
+  }
 }
