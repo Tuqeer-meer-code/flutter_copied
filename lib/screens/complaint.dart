@@ -8,6 +8,17 @@ class complaintScreen extends StatefulWidget {
 }
 
 class _complaintScreenState extends State<complaintScreen> {
+  final internet={
+    "1": "Internet Service Providers Association ",
+    "2": "NayaTel",
+    "3":"Pakistan Telecommunication Company",
+    "4": "Paknet",
+    "5": "Supernet Limited",
+    "6": "Wateen Telecom",
+    "7": "Wi-Tribe",
+    "8": "WorldCall",
+
+  };
   final electric = {
     "1": "FESCO",
     "2": "GEPCO",
@@ -29,6 +40,11 @@ class _complaintScreenState extends State<complaintScreen> {
   bool changeState = true;
   List<DropdownMenuItem<String>> menuitems = [];
 
+  void electricT(){
+    for (String key in electric.keys) {
+      menuitems.add(DropdownMenuItem(value: electric[key], child: Text(electric[key])));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,20 +81,23 @@ class _complaintScreenState extends State<complaintScreen> {
                   Icons.arrow_forward,
                   color: Colors.white,
                 ),
-                subtitle: dropDownC1(),
+
+                title: dropDownC1(),
               ),
             ),
             Card(
               elevation: 15,
-              color: plte.iconColor,
+              shadowColor: plte.activateColor,
+              color: plte.backgroundColor,
               shape: StadiumBorder(),
               margin: EdgeInsets.all(10.0),
               child: ListTile(
                 leading: Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
+
                 ),
-                subtitle:Text("abc"),
+                title: dropDownC2(),
               ),
             ),
             Card(
@@ -92,7 +111,6 @@ class _complaintScreenState extends State<complaintScreen> {
                   Icons.album_outlined,
                   color: Colors.white,
                 ),
-                subtitle: textField("Enter Consumer Number"),
               ),
             )
           ],
@@ -101,16 +119,6 @@ class _complaintScreenState extends State<complaintScreen> {
     );
   }
 
-  dropDownC2() {
-    return DropdownButton<String>(
-      items: menuitems,
-      disabledHint: Text("Select Category 1 First"),
-      onChanged: changeState
-          ? null
-          : (_value) => secondValueChange(_value),
-      hint: Text("Select Category 2"),
-    );
-  }
 
   dropDownC1() {
     return DropdownButton<String>(
@@ -127,44 +135,78 @@ class _complaintScreenState extends State<complaintScreen> {
           value: "2",
           child: Text("Internet", style: TextStyle(color: plte.textColor)),
         ),
+
         DropdownMenuItem<String>(
           value: "3",
-          child: Text("Water", style: TextStyle(color: plte.textColor)),
-        ),
-        DropdownMenuItem<String>(
-          value: "4",
           child: Text("Electricity", style: TextStyle(color: plte.textColor)),
         ),
-        DropdownMenuItem<String>(
-          value: "5",
-          child: Text("Garbage", style: TextStyle(color: plte.textColor)),
-        ),
+
       ],
       onChanged: (_value) => {valuechange(_value)},
       hint: Text(
         "Select category 1",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+
+    );
+
+  }
+
+  dropDownC2() {
+    return DropdownButton<String>(
+      items: menuitems,
+      disabledHint: Text("Select Category 1 First"),
+      onChanged: changeState
+          ? null
+          : (_value) => secondValueChange(_value),
+      hint: Text("Select Category 2"),
     );
   }
 
-  textField(String title) {
-    return TextField(
-        cursorColor: plte.backgroundColor,
-        decoration: new InputDecoration(
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            hintText: title,
-            hintStyle:
-            TextStyle(color: Colors.white, fontWeight: FontWeight.bold)));
-  }
-
   valuechange(_value) {
-
+setState(() {
+  valueC1=_value;
+  changeState=false;
+});
+if(_value=="3"){
+  electricT();
+}
+else if(_value=="2"){
+  internetF();
+}
+else if(_value=="3"){}
+  gasF();
   }
 
-  secondValueChange(_value) {}
+  secondValueChange(_value) {
+    setState(() {
+      valueC1 = _value;
+    });
+  }
+void gasF(){
+  for (String key in gas.keys) {
+    menuitems.add(DropdownMenuItem(value: gas[key],
+
+        child: Text(gas[key])));
+  }
 }
+  void internetF() {
+    for (String key in internet.keys) {
+      menuitems.add(DropdownMenuItem(value: internet[key], child: Text(internet[key])));
+    }
+  }
+  }
+
+  // textField(String title) {
+  //   return TextField(
+  //       cursorColor: plte.backgroundColor,
+  //       decoration: new InputDecoration(
+  //           border: InputBorder.none,
+  //           focusedBorder: InputBorder.none,
+  //           enabledBorder: InputBorder.none,
+  //           errorBorder: InputBorder.none,
+  //           disabledBorder: InputBorder.none,
+  //           hintText: title,
+  //           hintStyle:
+  //           TextStyle(color: Colors.white, fontWeight: FontWeight.bold)));
+  // }
+
