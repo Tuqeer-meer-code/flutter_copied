@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:uscb/screens/complaint.dart';
 import 'pallete.dart';
 class c_main extends StatefulWidget {
   @override
@@ -20,7 +22,22 @@ class _c_mainState extends State<c_main> {
               )),
           backgroundColor: plte.backgroundColor,
         ),
-        body: Material(color: plte.backgroundColor, child: getListView()),
+        body: Material(
+            elevation: 15,
+            color: plte.backgroundColor, child:
+        Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MaterialButton(
+                  elevation: 15,
+                  onPressed: (){}
+              )
+            ],
+          ),
+        )
+        ),
       ),
     );
 }
@@ -42,6 +59,7 @@ Widget getListView() {
                 Icons.electrical_services,
                 color: Colors.white,
               ),
+
             ),
             shadowColor: plte.activateColor,
           ),
