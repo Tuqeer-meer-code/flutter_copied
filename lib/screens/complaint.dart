@@ -9,8 +9,8 @@ class complaintScreen extends StatefulWidget {
 
 class _complaintScreenState extends State<complaintScreen> {
   final internet={
-    "1": "Service Providers Association ",
-    "2": "NayaTel",
+    "1": "NayaTel",
+    "2": "SPA",
     "3":"Pak Telecommunication",
     "4": "Paknet",
     "5": "Supernet Limited",
@@ -37,6 +37,7 @@ class _complaintScreenState extends State<complaintScreen> {
     "5": "Tal Block",
   };
   String valueC1 ;
+  String second;
   bool changeState = false;
   List<DropdownMenuItem<String>> menuitems = [];
 
@@ -61,7 +62,7 @@ class _complaintScreenState extends State<complaintScreen> {
 
   Widget getListView() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 30),
       child: Container(
         child: ListView(
           children: [
@@ -70,8 +71,9 @@ class _complaintScreenState extends State<complaintScreen> {
               elevation: 15,
               color: plte.backgroundColor,
               shape: StadiumBorder(),
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
               child: ListTile(
+
                 leading: Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
@@ -85,7 +87,7 @@ class _complaintScreenState extends State<complaintScreen> {
               shadowColor: plte.activateColor,
               color: plte.backgroundColor,
               shape: StadiumBorder(),
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
               child: ListTile(
                 leading: Icon(
                   Icons.arrow_forward,
@@ -100,20 +102,40 @@ class _complaintScreenState extends State<complaintScreen> {
               elevation: 15,
               color: plte.backgroundColor,
               shape: StadiumBorder(),
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
               child: ListTile(
                 leading: Icon(
                   Icons.album_outlined,
                   color: Colors.white,
                 ),
               ),
-            )
+            ),SizedBox(height: 20,),
+            textfield("Enter location", "Location")
           ],
         ),
       ),
     );
   }
 
+  Widget textfield(
+      String hint,String label){
+return
+    TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          Icons.adjust_rounded,
+          color: plte.iconColor,
+        ),
+        border: OutlineInputBorder(
+          borderRadius:
+          BorderRadius.all(Radius.circular(30.0)),
+        ),
+        contentPadding: EdgeInsets.all(8.0),
+        hintText: hint,
+        labelText: label,
+      ),
+    );
+  }
 
   dropDownC1() {
     return DropdownButton<String>(
@@ -155,6 +177,7 @@ value: valueC1,
           ? null
           : (_value) => secondValueChange(_value),
       hint: Text("Select Category 2"),
+    value: second,
     );
   }
 
@@ -193,7 +216,7 @@ if(_value=="3"){
   }
   secondValueChange(_value) {
     setState(() {
-      valueC1 = _value;
+      second = _value;
     });
   }
 void gasF(){
