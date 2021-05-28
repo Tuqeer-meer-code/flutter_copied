@@ -105,6 +105,7 @@ class _loginScreenState extends State<loginScreen> {
                             ),
                             contentPadding: EdgeInsets.all(8.0),
                             hintText: "Enter Password",
+                            labelText: "Password",
                           ),
                         ),
               SizedBox(height: 10,)

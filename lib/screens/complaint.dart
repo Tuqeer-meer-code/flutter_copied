@@ -9,9 +9,9 @@ class complaintScreen extends StatefulWidget {
 
 class _complaintScreenState extends State<complaintScreen> {
   final internet={
-    "1": "Internet Service Providers Association ",
+    "1": "Service Providers Association ",
     "2": "NayaTel",
-    "3":"Pakistan Telecommunication Company",
+    "3":"Pak Telecommunication",
     "4": "Paknet",
     "5": "Supernet Limited",
     "6": "Wateen Telecom",
@@ -36,15 +36,10 @@ class _complaintScreenState extends State<complaintScreen> {
     "4": "Sui Gas",
     "5": "Tal Block",
   };
-  String valueC1 = "";
-  bool changeState = true;
+  String valueC1 ;
+  bool changeState = false;
   List<DropdownMenuItem<String>> menuitems = [];
 
-  void electricT(){
-    for (String key in electric.keys) {
-      menuitems.add(DropdownMenuItem(value: electric[key], child: Text(electric[key])));
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -127,7 +122,7 @@ class _complaintScreenState extends State<complaintScreen> {
         DropdownMenuItem<String>(
           value: "1",
           child: Text(
-            "Gas",
+            "Electricity",
             style: TextStyle(color: plte.textColor),
           ),
         ),
@@ -138,16 +133,17 @@ class _complaintScreenState extends State<complaintScreen> {
 
         DropdownMenuItem<String>(
           value: "3",
-          child: Text("Electricity", style: TextStyle(color: plte.textColor)),
+          child: Text("Gas", style: TextStyle(color: plte.textColor)),
         ),
 
       ],
-      onChanged: (_value) => {valuechange(_value)},
+      onChanged: (_value)=> valuechange(_value),
+
       hint: Text(
         "Select category 1",
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-
-    );
+value: valueC1,
+          );
 
   }
 
@@ -163,20 +159,38 @@ class _complaintScreenState extends State<complaintScreen> {
   }
 
   valuechange(_value) {
-setState(() {
-  valueC1=_value;
-  changeState=false;
-});
-if(_value=="3"){
-  electricT();
-}
-else if(_value=="2"){
-  internetF();
-}
-else if(_value=="3"){}
-  gasF();
-  }
+if(_value=="1"){
+  menuitems=[];
+  setState(() {
+    electricT();
+    valueC1=_value;
 
+    changeState=false;
+  });
+}
+if(_value=="2"){
+  menuitems=[];
+  setState(() {
+    valueC1=_value;
+    changeState=false;
+    internetF();
+  });
+}
+if(_value=="3"){
+  menuitems=[];
+  setState(() {
+    gasF();
+    valueC1=_value;
+    changeState=false;
+  });
+}
+
+  }
+  void electricT(){
+    for (String key in electric.keys) {
+      menuitems.add(DropdownMenuItem(value: electric[key], child: Text(electric[key])));
+    }
+  }
   secondValueChange(_value) {
     setState(() {
       valueC1 = _value;
@@ -185,7 +199,6 @@ else if(_value=="3"){}
 void gasF(){
   for (String key in gas.keys) {
     menuitems.add(DropdownMenuItem(value: gas[key],
-
         child: Text(gas[key])));
   }
 }
@@ -195,18 +208,3 @@ void gasF(){
     }
   }
   }
-
-  // textField(String title) {
-  //   return TextField(
-  //       cursorColor: plte.backgroundColor,
-  //       decoration: new InputDecoration(
-  //           border: InputBorder.none,
-  //           focusedBorder: InputBorder.none,
-  //           enabledBorder: InputBorder.none,
-  //           errorBorder: InputBorder.none,
-  //           disabledBorder: InputBorder.none,
-  //           hintText: title,
-  //           hintStyle:
-  //           TextStyle(color: Colors.white, fontWeight: FontWeight.bold)));
-  // }
-

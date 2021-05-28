@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uscb/screens/c_main.dart';
-import 'complaint.dart';
 import 'pallete.dart';
 
 class mainScreen extends StatefulWidget {
