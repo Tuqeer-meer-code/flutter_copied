@@ -55,85 +55,105 @@ class _complaintScreenState extends State<complaintScreen> {
               )),
           backgroundColor: plte.backgroundColor,
         ),
-        body: Material(color: plte.backgroundColor, child: getListView()),
+        body: Material(color: plte.backgroundColor, child: singlescroll()),
       ),
     );
   }
 
-  Widget getListView() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: Container(
-        child: ListView(
-          children: [
-            Card(
-              shadowColor: plte.activateColor,
-              elevation: 15,
-              color: plte.backgroundColor,
-              shape: StadiumBorder(),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-              child: ListTile(
+  Widget singlescroll(){
+    return SingleChildScrollView(
+      child:  Column(
+        children: [
+          Card(
+            shadowColor: plte.activateColor,
+            elevation: 5,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            child: ListTile(
 
-                leading: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                ),
-
-                title: dropDownC1(),
+              leading: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
               ),
+
+              title: dropDownC1(),
             ),
-            Card(
-              elevation: 15,
-              shadowColor: plte.activateColor,
-              color: plte.backgroundColor,
-              shape: StadiumBorder(),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-              child: ListTile(
-                leading: Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
+          ),
+          Card(
+            elevation: 5,
+            shadowColor: plte.activateColor,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            child: ListTile(
+              leading: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
 
-                ),
-                title: dropDownC2(),
               ),
+              title: dropDownC2(),
             ),
-            Card(
-              shadowColor: plte.activateColor,
-              elevation: 15,
-              color: plte.backgroundColor,
-              shape: StadiumBorder(),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-              child: ListTile(
-                leading: Icon(
-                  Icons.album_outlined,
-                  color: Colors.white,
-                ),
-              ),
-            ),SizedBox(height: 20,),
-            textfield("Enter location", "Location")
-          ],
-        ),
+          ),
+
+          Card(
+            elevation: 5,
+            shadowColor: plte.activateColor,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            child: ListTile(
+              title: textfield("Enter Consumer number"),
+            ),
+          ),
+          Card(
+            elevation: 5,
+            shadowColor: plte.activateColor,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            child: ListTile(
+              title: textfield("Enter Complaint Type"),
+            ),
+          ),
+
+          Card(
+            elevation: 5,
+            shadowColor: plte.activateColor,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            child: ListTile(
+              title: textfield("Enter Complaint Location"),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget textfield(
-      String hint,String label){
+      String label){
 return
     TextField(
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.adjust_rounded,
-          color: plte.iconColor,
+          color: Colors.white,
         ),
         border: OutlineInputBorder(
           borderRadius:
-          BorderRadius.all(Radius.circular(30.0)),
+          BorderRadius.all(Radius.circular(20.0)),
+borderSide: BorderSide.none
         ),
+
         contentPadding: EdgeInsets.all(8.0),
-        hintText: hint,
-        labelText: label,
+
+        labelText: label,labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: Colors.white)
       ),
+      style: TextStyle(color: Colors.white),
+
     );
   }
 
@@ -168,7 +188,6 @@ value: valueC1,
           );
 
   }
-
   dropDownC2() {
     return DropdownButton<String>(
       items: menuitems,

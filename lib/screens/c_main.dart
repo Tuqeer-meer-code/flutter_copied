@@ -105,22 +105,8 @@ class _c_mainState extends State<c_main> {
                       splashColor: plte.backgroundColor,
                       minWidth: 150,
                       padding: EdgeInsets.all(10),
-                    ),SizedBox(height: 15,),
-                    FlatButton.icon(
-                      onPressed: () {
-
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen();
-                        }));
-                      },
-                      icon: Icon(Icons.signal_cellular_connected_no_internet_4_bar,color: Colors.white,),
-                      label: Text("Internet",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-                      color: plte.btnColor,
-                      shape: StadiumBorder(),
-                      splashColor: plte.backgroundColor,
-                      minWidth: 150,
-                      padding: EdgeInsets.all(10),
-                    ),SizedBox(height: 15,),
+                    ),SizedBox(height: 10,),
+                    SizedBox(height: 15,),
                     FlatButton.icon(
                       onPressed: () {
                       },
