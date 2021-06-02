@@ -7,5 +7,7 @@ class plte {
   static const Color textColor = Color(0xFF4169E1);
   static const Color activateColor = Color(0xFF1B3FAB);
   static const Color tCardColor = Color(0xFFFFFFFF);
+  static const Color drawerColor = Color(0xFFAFBCE9);
+
 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uscb/screens/c_main.dart';
+import 'drawer.dart';
 import 'pallete.dart';
 
 class mainScreen extends StatefulWidget {
@@ -9,8 +10,14 @@ class mainScreen extends StatefulWidget {
 
 class _mainScreenState extends State<mainScreen> {
   @override
+  var name="TUQEER";
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 2,
+        title: Text("Welcome $name",style: TextStyle(fontSize: 18,color: plte.activateColor),),
+        backgroundColor: plte.backgroundColor,
+      ),
       backgroundColor: plte.backgroundColor,
       body: Stack(
         children: [
@@ -19,7 +26,7 @@ class _mainScreenState extends State<mainScreen> {
             right: 0,
             left: 0,
             child: Container(
-              height: 200,
+              height: 150,
               child: Container(
                 padding: EdgeInsets.only(top: 90, left: 20),
                 color: Color(0xFF3b5999).withOpacity(.30),
@@ -108,6 +115,7 @@ class _mainScreenState extends State<mainScreen> {
           )
         ],
       ),
+      drawer: myDrawer(),
     );
   }
 }

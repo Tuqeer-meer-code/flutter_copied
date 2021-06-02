@@ -11,7 +11,7 @@ class signupScreen extends StatefulWidget {
 class _signupScreenState extends State<signupScreen> {
   @override
   int group = 1;
-
+  var _formkey=GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: plte.backgroundColor,
@@ -74,103 +74,93 @@ class _signupScreenState extends State<signupScreen> {
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.account_circle_outlined,
-                              color: plte.iconColor,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Enter your Email",
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          obscureText: true,
-                          obscuringCharacter: '0',
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.adjust_rounded,
-                              color: plte.iconColor,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Enter Password",
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          obscureText: true,
-                          obscuringCharacter: '0',
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.adjust_rounded,
-                              color: plte.iconColor,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Confirm Password",
-                          ),
-                        ),
-                        Row(
+                    child: Form(
+                      key: _formkey,
+                      child: SingleChildScrollView(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Radio(
-                              value: 1,
-                              activeColor: plte.btnColor,
-                              groupValue: group,
-                              onChanged: (t) {
-                                setState(() {
-                                  group = t;
-                                });
+                            TextFormField(
+                              validator: (String value){
+                                if(value.isEmpty){
+                                  return "Please Enter Email";
+                                }
                               },
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.account_circle_outlined,
+                                  color: plte.iconColor,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30.0)),
+                                ),
+                                contentPadding: EdgeInsets.all(8.0),
+                                hintText: "Enter your Email",
+                              ),
                             ),
-                            Text("Male"),
-                            Radio(
-                              value: 2,
-                              groupValue: group,
-                              activeColor: plte.btnColor,
-                              onChanged: (t) {
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              obscureText: true,
+                              obscuringCharacter: '0',
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.adjust_rounded,
+                                  color: plte.iconColor,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30.0)),
+                                ),
+                                contentPadding: EdgeInsets.all(8.0),
+                                hintText: "Enter Password",
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextField(
+                              obscureText: true,
+                              obscuringCharacter: '0',
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.adjust_rounded,
+                                  color: plte.iconColor,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30.0)),
+                                ),
+                                contentPadding: EdgeInsets.all(8.0),
+                                hintText: "Confirm Password",
+                              ),
+                            ),
+                            
+                            SizedBox(height: 10,),
+                            MaterialButton(
+                              elevation: 10,
+                                minWidth: 100,
+                              splashColor: plte.textColor,
+                              shape: StadiumBorder(),
+                              child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                              color: plte.btnColor,
+
+                                onPressed: (){
+
                                 setState(() {
-                                  group = t;
+                                  if(_formkey.currentState.validate()) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                          return mainScreen();
+                                        }));
+                                  }
                                 });
-                              },
-                            ),
-                            Text("Female")
+                                })
                           ],
                         ),
-                        SizedBox(height: 10,),
-                        MaterialButton(
-                          elevation: 10,
-                            minWidth: 100,
-                          splashColor: plte.textColor,
-                          shape: StadiumBorder(),
-                          child: Text("Sign up",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
-                          color: plte.btnColor,
-
-                            onPressed: (){
-                             Navigator.push(context, MaterialPageRoute(builder: (context){
-                               return mainScreen();
-                             }));
-                            })
-                      ],
+                      ),
                     ),
                   )
               )
