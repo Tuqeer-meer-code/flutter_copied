@@ -58,9 +58,10 @@ class _signupScreenState extends State<signupScreen> {
                 ),
               )),
           Positioned(
-              top: 200,
+              top: 150,
               child: Container(
-                  height: 300,
+                padding: EdgeInsets.all(10.0),
+                  height: 350,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
@@ -69,78 +70,41 @@ class _signupScreenState extends State<signupScreen> {
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.3),
-                            blurRadius: 15,
+                            blurRadius: 10,
                             spreadRadius: 5)
                       ]),
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: EdgeInsets.only(left: 15.0,right: 15.0, bottom: MediaQuery.of(context).viewInsets.bottom),
+                    
                     child: Form(
                       key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.center,
+                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            TextFormField(
-                              validator: (String value){
-                                if(value.isEmpty){
-                                  return "Please Enter Email";
-                                }
-                              },
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.account_circle_outlined,
-                                  color: plte.iconColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
-                                ),
-                                contentPadding: EdgeInsets.all(8.0),
-                                hintText: "Enter your Email",
-                              ),
-                            ),
+                            textfield("Enter Name"),
                             SizedBox(
                               height: 10,
                             ),
-                            TextField(
-                              obscureText: true,
-                              obscuringCharacter: '0',
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.adjust_rounded,
-                                  color: plte.iconColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
-                                ),
-                                contentPadding: EdgeInsets.all(8.0),
-                                hintText: "Enter Password",
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextField(
-                              obscureText: true,
-                              obscuringCharacter: '0',
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.adjust_rounded,
-                                  color: plte.iconColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
-                                ),
-                                contentPadding: EdgeInsets.all(8.0),
-                                hintText: "Confirm Password",
-                              ),
-                            ),
-                            
+                        textfield("Enter Cnic")
+                        ,   SizedBox(height: 10,),
+                        textfield("Enter Email")
+                        ,   SizedBox(height: 10,),
+                            textfield("Enter House address")
+                            ,   SizedBox(height: 10,),
+                            textfield("Enter Province")
+                        ,   SizedBox(height: 10,),
+                            textfield("Enter District")
+                        ,   SizedBox(height: 10,),
+                            textfield("Enter Tehsil")
+                        ,   SizedBox(height: 10,),
+                            textfield("Enter City")
+                        ,   SizedBox(height: 10,),
+                          textfield("Password"),
                             SizedBox(height: 10,),
                             MaterialButton(
-                              elevation: 10,
+                              elevation: 5,
                                 minWidth: 100,
                               splashColor: plte.textColor,
                               shape: StadiumBorder(),
@@ -192,4 +156,29 @@ class _signupScreenState extends State<signupScreen> {
       ),
     );
   }
+}
+Widget textfield(String title){
+  return
+  TextFormField(
+
+    validator: (String value){
+      if(value.isEmpty){
+        return "Required";
+      }
+    },
+    decoration: InputDecoration(
+
+      prefixIcon: Icon(
+        Icons.account_circle_outlined,
+        color: plte.iconColor,
+      ),
+      border: OutlineInputBorder(
+        borderRadius:
+        BorderRadius.all(Radius.circular(30.0)),
+      ),
+      contentPadding: EdgeInsets.all(10.0),
+      hintText: title,
+    ),
+  );
+
 }
