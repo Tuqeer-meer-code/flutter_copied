@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:uscb/screens/mainscreen.dart';
 import 'login.dart';
 import 'pallete.dart';
-
 class signupScreen extends StatefulWidget {
   @override
   _signupScreenState createState() => _signupScreenState();
@@ -22,9 +21,9 @@ class _signupScreenState extends State<signupScreen> {
               right: 0,
               left: 0,
               child: Container(
-                height: 300,
+                height: 200,
                 child: Container(
-                  padding: EdgeInsets.only(top: 90, left: 20),
+                  padding: EdgeInsets.only(top: 50, left: 20),
                   color: Color(0xFF3b5999).withOpacity(.30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,10 +57,10 @@ class _signupScreenState extends State<signupScreen> {
                 ),
               )),
           Positioned(
-              top: 150,
+              top: 120,
               child: Container(
-                padding: EdgeInsets.all(10.0),
-                  height: 350,
+                padding: EdgeInsets.only(top: 10,left: 10,right: 10),
+                  height: 380,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
@@ -74,9 +73,10 @@ class _signupScreenState extends State<signupScreen> {
                             spreadRadius: 5)
                       ]),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 15.0,right: 15.0, bottom: MediaQuery.of(context).viewInsets.bottom),
-                    
+                    padding: EdgeInsets.only(left: 15.0,right: 15.0, ),
+
                     child: Form(
+
                       key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
@@ -160,13 +160,13 @@ class _signupScreenState extends State<signupScreen> {
 Widget textfield(String title){
   return
   TextFormField(
-
     validator: (String value){
       if(value.isEmpty){
         return "Required";
       }
     },
     decoration: InputDecoration(
+errorStyle: TextStyle(letterSpacing: 1,color: Colors.white,fontSize: 14,),
 
       prefixIcon: Icon(
         Icons.account_circle_outlined,
@@ -178,6 +178,7 @@ Widget textfield(String title){
       ),
       contentPadding: EdgeInsets.all(10.0),
       hintText: title,
+
     ),
   );
 
