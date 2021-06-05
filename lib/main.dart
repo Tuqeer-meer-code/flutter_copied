@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uscb/screens/c_main.dart';
+import 'package:uscb/screens/complaint.dart';
+import 'package:uscb/screens/login.dart';
+import 'package:uscb/screens/mainscreen.dart';
 import 'package:uscb/screens/signup.dart';
 void main() {
   runApp(MyApp());
@@ -9,7 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Login Signup UI",
-      home: signupScreen(),
-    );
+      routes: {
+        "/": (context)=>loginScreen(),
+        "/signUp": (context)=>signupScreen(),
+        "/Home": (context)=>mainScreen(),
+        "/complain choice":(context)=>c_main(),
+        "/Complain Form":(context)=>complaintScreen(),
+      });
   }
 }

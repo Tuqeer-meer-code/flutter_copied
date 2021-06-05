@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uscb/screens/c_main.dart';
 import 'drawer.dart';
 import 'pallete.dart';
@@ -12,6 +13,10 @@ class _mainScreenState extends State<mainScreen> {
   @override
   var name="TUQEER";
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: plte.btnColor));
+
     return Scaffold(
       appBar: AppBar(
         elevation: 2,

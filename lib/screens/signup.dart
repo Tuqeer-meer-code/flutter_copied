@@ -92,11 +92,14 @@ class _signupScreenState extends State<signupScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 textfield("Enter Name"),
                                 SizedBox(
                                   height: 10,
                                 ),
-                                textfield("Enter Cnic"),
+                                 textfield("Enter Cnic"),
                                 SizedBox(
                                   height: 10,
                                 ),
@@ -182,7 +185,9 @@ class _signupScreenState extends State<signupScreen> {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return loginScreen();
-                                }));
+                                    }
+                                    )
+                                );
                               });
                             },
                           ),
@@ -217,8 +222,8 @@ Widget textfield(String title) {
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(30.0)),
-      ),
-      contentPadding: EdgeInsets.all(10.0),
+       ),
+      contentPadding: EdgeInsets.all(5.0),
       hintText: title,
     ),
   );

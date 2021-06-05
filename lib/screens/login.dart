@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uscb/screens/mainscreen.dart';
 import 'package:uscb/screens/signup.dart';
 import 'pallete.dart';
@@ -10,6 +11,9 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: plte.btnColor));
     return Scaffold(
       backgroundColor: plte.backgroundColor,
       body: Stack(
