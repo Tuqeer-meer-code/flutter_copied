@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/mainscreen.dart';
 import 'package:uscb/screens/signup.dart';
 import 'pallete.dart';
@@ -123,9 +124,7 @@ class _loginScreenState extends State<loginScreen> {
                             color: plte.btnColor,
 
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return mainScreen();
-                              }));
+                              Navigator.pushNamed(context, MyRoutes.MainScreen);
                             })
                       ],
                     ),
@@ -146,9 +145,7 @@ class _loginScreenState extends State<loginScreen> {
                   child: Text("Sign In"),
                   onPressed: (){
                     setState(() {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return signupScreen();
-                      }));
+                     Navigator.pushNamed(context, MyRoutes.signUp);
                     });
                   },
                 ),

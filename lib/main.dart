@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/c_main.dart';
 import 'package:uscb/screens/complaint.dart';
 import 'package:uscb/screens/login.dart';
@@ -15,11 +16,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Login Signup UI",
       routes: {
-        "/": (context)=>loginScreen(),
-        "/signUp": (context)=>signupScreen(),
-        "/Home": (context)=>mainScreen(),
-        "/complain choice":(context)=>c_main(),
-        "/Complain Form":(context)=>complaintScreen(),
+        MyRoutes.LoginRoute: (context)=>loginScreen(),
+        MyRoutes.signUp: (context)=>signupScreen(),
+        MyRoutes.MainScreen: (context)=>mainScreen(),
+        MyRoutes.ComplainButtonsChoice:(context)=>c_main(),
+        MyRoutes.cForm:(context)=>complaintScreen(),
       });
   }
 }

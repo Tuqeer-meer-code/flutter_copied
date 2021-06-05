@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/c_main.dart';
 import 'drawer.dart';
 import 'pallete.dart';
@@ -78,9 +79,7 @@ class _mainScreenState extends State<mainScreen> {
                       iconSize: 70,
                       splashColor: plte.btnColor,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return c_main();
-                        }));
+                        Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
                       }),
                   Text(
                     "Register Complaint",
@@ -95,7 +94,9 @@ class _mainScreenState extends State<mainScreen> {
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
+                      }),
                   Text(
                     "Information",
                     style: TextStyle(
