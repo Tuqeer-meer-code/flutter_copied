@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/mainscreen.dart';
-import 'login.dart';
 import 'pallete.dart';
 
 class signupScreen extends StatefulWidget {
@@ -11,6 +10,7 @@ class signupScreen extends StatefulWidget {
 }
 
 class _signupScreenState extends State<signupScreen> {
+
   @override
   int group = 1;
   var _formkey = GlobalKey<FormState>();
@@ -194,30 +194,39 @@ class _signupScreenState extends State<signupScreen> {
       ),
     );
   }
-}
+  final myController=TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
-Widget textfield(String title) {
-  return TextFormField(
+  Widget textfield(String title  ) {
+    return TextFormField(
+controller: myController,
     validator: (String value) {
       if (value.isEmpty) {
         return "Required";
       }
     },
     decoration: InputDecoration(
-      errorStyle: TextStyle(
-        letterSpacing: 1,
-        color: Colors.white,
-        fontSize: 14,
-      ),
-      prefixIcon: Icon(
-        Icons.account_circle_outlined,
-        color: plte.iconColor,
-      ),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-      ),
-      contentPadding: EdgeInsets.all(5.0),
-      hintText: title,
+    errorStyle: TextStyle(
+    letterSpacing: 1,
+    color: Colors.white,
+    fontSize: 14,
     ),
-  );
+    prefixIcon: Icon(
+    Icons.account_circle_outlined,
+    color: plte.iconColor,
+    ),
+    border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+    ),
+    contentPadding: EdgeInsets.all(5.0),
+    hintText: title,
+    ),
+    );
+  }
+
 }

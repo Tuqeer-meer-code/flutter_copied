@@ -12,7 +12,7 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
-
+    var _formkey = GlobalKey<FormState>();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: plte.btnColor));
     return Scaffold(
