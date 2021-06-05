@@ -160,10 +160,7 @@ class _signupScreenState extends State<signupScreen> {
                       onPressed: () {
                         setState(() {
                           if (_formkey.currentState.validate()) {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return mainScreen();
-                            }));
+                            Navigator.pushNamed(context, MyRoutes.MainScreen);
                           }
                         });
                       }),

@@ -76,57 +76,83 @@ class _loginScreenState extends State<loginScreen> {
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.account_circle_outlined,
-                              color: plte.iconColor,
+                    child: Form(
+                      key: _formkey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return "Required";
+                                }
+                              },
+                              decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                  letterSpacing: 1,
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.account_circle_outlined,
+                                  color: plte.iconColor,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
+                                ),
+                                contentPadding: EdgeInsets.all(8.0),
+                                hintText: "Enter your Email",
+                              ),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(30.0)),
+                            SizedBox(
+                              height: 10,
                             ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Enter your Email",
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          obscureText: true,
-                          obscuringCharacter: '*',
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.adjust_rounded,
-                              color: plte.iconColor,
+                            TextFormField(
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return "Required";
+                                }
+                              },
+                              obscureText: true,
+                              obscuringCharacter: '*',
+                              decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                  letterSpacing: 1,
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.adjust_rounded,
+                                  color: plte.iconColor,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
+                                ),
+                                contentPadding: EdgeInsets.all(8.0),
+                                hintText: "Enter Password",
+                                labelText: "Password",
+                              ),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            hintText: "Enter Password",
-                            labelText: "Password",
-                          ),
-                        ),
-              SizedBox(height: 10,)
+              SizedBox(height: 20,)
               ,
-                        MaterialButton(
-                          elevation: 10,
-                            minWidth: 100,
-                            splashColor: plte.textColor,
-                            shape: StadiumBorder(),
-                            child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
-                            color: plte.btnColor,
+                            MaterialButton(
+                              elevation: 10,
+                                minWidth: 100,
+                                splashColor: plte.textColor,
+                                shape: StadiumBorder(),
+                                child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                                color: plte.btnColor,
 
-                            onPressed: (){
-                              Navigator.pushNamed(context, MyRoutes.MainScreen);
-                            })
-                      ],
+                                onPressed: (){
+                                  if (_formkey.currentState.validate()) {
+                                    Navigator.pushNamed(context, MyRoutes.MainScreen);
+                                  }})
+                          ],
+                        ),
+                      ),
                     ),
                   )
               )
