@@ -111,6 +111,7 @@ class _loginScreenState extends State<loginScreen> {
                                   ),
                                   contentPadding: EdgeInsets.all(8.0),
                                   hintText: "Enter your Email",
+                                  labelText: "Email"
                                 ),
                               ),
                             ),
