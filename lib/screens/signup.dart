@@ -223,6 +223,7 @@ final name=TextEditingController();
     ),
     contentPadding: EdgeInsets.all(5.0),
     hintText: title,
+      labelText: title
     ),
     );
 

@@ -10,9 +10,12 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
+  var _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var _formkey = GlobalKey<FormState>();
+    final emailcon=TextEditingController();
+    final password=TextEditingController();
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: plte.btnColor));
     return Scaffold(
@@ -62,7 +65,7 @@ class _loginScreenState extends State<loginScreen> {
           Positioned(
               top: 200,
               child: Container(
-                  height: 200,
+                  height: 220,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
@@ -80,36 +83,42 @@ class _loginScreenState extends State<loginScreen> {
                       key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
+
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            TextFormField(
-                              validator: (String value) {
-                                if (value.isEmpty) {
-                                  return "Required";
-                                }
-                              },
-                              decoration: InputDecoration(
-                                errorStyle: TextStyle(
-                                  letterSpacing: 1,
-                                  color: Colors.white,
-                                  fontSize: 14,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: TextFormField(
+                                controller: emailcon,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return "Required";
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                  errorStyle: TextStyle(
+                                    letterSpacing: 1,
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.account_circle_outlined,
+                                    color: plte.iconColor,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0)),
+                                  ),
+                                  contentPadding: EdgeInsets.all(8.0),
+                                  hintText: "Enter your Email",
                                 ),
-                                prefixIcon: Icon(
-                                  Icons.account_circle_outlined,
-                                  color: plte.iconColor,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                                ),
-                                contentPadding: EdgeInsets.all(8.0),
-                                hintText: "Enter your Email",
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 20,
                             ),
                             TextFormField(
+                              controller: password,
                               validator: (String value) {
                                 if (value.isEmpty) {
                                   return "Required";
@@ -137,20 +146,7 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                             ),
               SizedBox(height: 20,)
-              ,
-                            MaterialButton(
-                              elevation: 10,
-                                minWidth: 100,
-                                splashColor: plte.textColor,
-                                shape: StadiumBorder(),
-                                child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
-                                color: plte.btnColor,
-
-                                onPressed: (){
-                                  if (_formkey.currentState.validate()) {
-                                    Navigator.pushNamed(context, MyRoutes.MainScreen);
-                                  }})
-                          ],
+              ,],
                         ),
                       ),
                     ),
@@ -158,22 +154,42 @@ class _loginScreenState extends State<loginScreen> {
               )
           ),
           Positioned(
-            top: 410,
-            child: Row(
+            top: 430,
+            child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 70),
-                  child: Text("Don't have an account?",style: TextStyle(color: Colors.white),),
-                ),
+                  padding: const EdgeInsets.only(left: 50),
+                  child: MaterialButton(
+                      elevation: 1,
+                      minWidth: 100,
+                      splashColor: plte.textColor,
+                      shape: StadiumBorder(),
+                      child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                      color: plte.btnColor,
 
-                TextButton(
+                      onPressed: (){
+                        if (_formkey.currentState.validate()) {
+                          Navigator.pushNamed(context, MyRoutes.MainScreen);
+                        }}),
+                )
+                ,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 70),
+                      child: Text("Don't have an account?",style: TextStyle(color: Colors.white),),
+                    ),
 
-                  child: Text("Sign In"),
-                  onPressed: (){
-                    setState(() {
-                     Navigator.pushNamed(context, MyRoutes.signUp);
-                    });
-                  },
+                    TextButton(
+
+                      child: Text("Sign Up"),
+                      onPressed: (){
+                        setState(() {
+                         Navigator.pushNamed(context, MyRoutes.signUp);
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
