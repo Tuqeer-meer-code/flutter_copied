@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'pallete.dart';
 
 class complaintScreen extends StatefulWidget {
-  @override
-  _complaintScreenState createState() => _complaintScreenState();
-}
+  String value;
 
+  complaintScreen({this.value});
+  @override
+  _complaintScreenState createState() => _complaintScreenState(value);
+}
 class _complaintScreenState extends State<complaintScreen> {
+String value;
+String company;
+_complaintScreenState(this.value);
   final internet={
     "1": "NayaTel",
     "2": "SPA",
@@ -36,10 +41,7 @@ class _complaintScreenState extends State<complaintScreen> {
     "4": "Sui Gas",
     "5": "Tal Block",
   };
-  String valueC1 ;
-  String second;
-  bool changeState = false;
-  List<DropdownMenuItem<String>> menuitems = [];
+ List<DropdownMenuItem<String>> menuitems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _complaintScreenState extends State<complaintScreen> {
         appBar: AppBar(
           title: Center(
               child: Text(
-                "Register Complaint",
+                "Register Complaint of $value",
                 style: TextStyle(color: plte.textColor),
               )),
           backgroundColor: plte.backgroundColor,
@@ -100,7 +102,7 @@ Widget textField2(String label){
                 color: Colors.white,
               ),
 
-              title: dropDownC1(),
+              title: Text(value),
             ),
           ),
           Card(
@@ -231,77 +233,39 @@ borderSide: BorderSide.none
 
     );
   }
-
-
-  dropDownC1() {
-    return DropdownButton<String>(
-      dropdownColor: plte.backgroundColor,
-      items: [
-        DropdownMenuItem<String>(
-          value: "1",
-          child: Text(
-            "Electricity",
-            style: TextStyle(color: plte.textColor),
-          ),
-        ),
-        DropdownMenuItem<String>(
-          value: "2",
-          child: Text("Internet", style: TextStyle(color: plte.textColor)),
-        ),
-
-        DropdownMenuItem<String>(
-          value: "3",
-          child: Text("Gas", style: TextStyle(color: plte.textColor)),
-        ),
-
-      ],
-      onChanged: (_value)=> valuechange(_value),
-
-      hint: Text(
-        "Select category 1",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-value: valueC1,
-          );
-
-  }
   dropDownC2() {
-
+    valuechange();
     return DropdownButton<String>(
     dropdownColor: plte.backgroundColor,
       items: menuitems,
-      disabledHint: Text("Select Category 1 First",style: TextStyle(color: Colors.white),),
-      onChanged: changeState
-          ? null
-          : (_value) => secondValueChange(_value),
       hint: Text("Select Category 2",style: TextStyle(color: Colors.white)),
-    value: second,
+      onChanged: (val){
+      setState(() {
+
+        company=val;
+      });
+      },
+      value: company,
     );
   }
-
-  valuechange(_value) {
-if(_value=="1"){
+valuechange() {
+if(value=="Electric"){
   menuitems=[];
   setState(() {
     electricT();
-    valueC1=_value;
 
-    changeState=false;
   });
 }
-if(_value=="2"){
+if(value=="Internet"){
   menuitems=[];
   setState(() {
-    valueC1=_value;
-    changeState=false;
     internetF();
   });
 }
-if(_value=="3"){
+if(value=="Gas"){
   menuitems=[];
   setState(() {
     gasF();
-    valueC1=_value;
-    changeState=false;
   });
 }
 
@@ -310,11 +274,6 @@ if(_value=="3"){
     for (String key in electric.keys) {
       menuitems.add(DropdownMenuItem(value: electric[key], child: Text(electric[key])));
     }
-  }
-  secondValueChange(_value) {
-    setState(() {
-      second = _value;
-    });
   }
 void gasF(){
   for (String key in gas.keys) {

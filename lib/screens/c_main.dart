@@ -8,6 +8,7 @@ class c_main extends StatefulWidget {
 }
 
 class _c_mainState extends State<c_main> {
+String c_main;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,8 +36,9 @@ class _c_mainState extends State<c_main> {
                   children: [
                     FlatButton.icon(
                       onPressed: () {
+                        c_main="Electric";
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen();
+                          return complaintScreen(value : c_main);
                         }));
                       },
                       icon: Icon(Icons.electrical_services,color: Colors.white,),
@@ -52,8 +54,9 @@ class _c_mainState extends State<c_main> {
                     ),
                     FlatButton.icon(
                       onPressed: () {
+                        c_main="Gas";
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen();
+                          return complaintScreen(value : c_main);
                         }));
                       },
                       icon: Icon(Icons.games,color: Colors.white,),
@@ -68,7 +71,9 @@ class _c_mainState extends State<c_main> {
                       height: 15,
                     ),
                     FlatButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        c_main="Water";
+                      },
                       icon: Icon(Icons.water_damage_outlined,color: Colors.white,),
                       label: Text("Water",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
                       color: plte.btnColor,
@@ -82,9 +87,9 @@ class _c_mainState extends State<c_main> {
                     ),
                     FlatButton.icon(
                       onPressed: () {
-
+                        c_main="Internet";
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen();
+                          return complaintScreen(value : c_main);
                         }));
                       },
                       icon: Icon(Icons.signal_cellular_connected_no_internet_4_bar,color: Colors.white,),
@@ -97,6 +102,7 @@ class _c_mainState extends State<c_main> {
                     ),SizedBox(height: 15,),
                     FlatButton.icon(
                       onPressed: () {
+                        c_main="Garbage";
                       },
                       icon: Icon(Icons.all_inclusive_sharp,color: Colors.white,),
                       label: Text("Garbage",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
@@ -109,6 +115,7 @@ class _c_mainState extends State<c_main> {
                     SizedBox(height: 15,),
                     FlatButton.icon(
                       onPressed: () {
+                        c_main="Telephone";
                       },
                       icon: Icon(Icons.perm_phone_msg_sharp,color: Colors.white,),
                       label: Text("Telephone",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
