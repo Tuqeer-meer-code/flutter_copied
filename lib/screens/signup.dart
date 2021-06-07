@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
-import 'package:uscb/screens/mainscreen.dart';
 import 'pallete.dart';
 
 class signupScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _signupScreenState extends State<signupScreen> {
                 height: 200,
                 child: Container(
                   padding: EdgeInsets.only(top: 50, left: 20),
-                  color: Color(0xFF3b5999).withOpacity(.30),
+                  color: Color(0xff3b5999).withOpacity(.30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -93,39 +92,39 @@ class _signupScreenState extends State<signupScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter Name"),
+                            textfield("Name",name),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter Cnic"),
+                            textfield("Cnic",cnic),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter Email"),
+                            textfield("Email",email),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter House address"),
+                            textfield("House address",house),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter Province"),
+                            textfield("Province",province),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter District"),
+                            textfield("District",district),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter Tehsil"),
+                            textfield("Tehsil",tehsil),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Enter City"),
+                            textfield("City",city),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Password"),
+                            textfield("Password",password),
                             SizedBox(
                               height: 150,
                             ),
@@ -191,20 +190,22 @@ class _signupScreenState extends State<signupScreen> {
       ),
     );
   }
-  final myController=TextEditingController();
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }
+  final password=TextEditingController();
+  final district=TextEditingController();
+  final tehsil=TextEditingController();
+  final city=TextEditingController();
+  final province=TextEditingController();
+final name=TextEditingController();
+  final cnic=TextEditingController();
+  final email=TextEditingController();
+  final house=TextEditingController();
+  Widget textfield(String title ,TextEditingController con ) {
 
-  Widget textfield(String title  ) {
     return TextFormField(
-controller: myController,
+      controller: con,
     validator: (String value) {
       if (value.isEmpty) {
-        return "Required";
+        return "$title is Required";
       }
     },
     decoration: InputDecoration(
@@ -224,6 +225,7 @@ controller: myController,
     hintText: title,
     ),
     );
+
   }
 
 }
