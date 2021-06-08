@@ -119,7 +119,6 @@ class _loginScreenState extends State<loginScreen> {
                               height: 20,
                             ),
                             TextFormField(
-                              controller: password,
                               validator: (String value) {
                                 if (value.isEmpty) {
                                   return "Required";
@@ -145,6 +144,7 @@ class _loginScreenState extends State<loginScreen> {
                                 hintText: "Enter Password",
                                 labelText: "Password",
                               ),
+                              controller: password,
                             ),
               SizedBox(height: 20,)
               ,],

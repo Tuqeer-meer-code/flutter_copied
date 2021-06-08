@@ -90,11 +90,11 @@ Widget textField2(String label){
       child:  Column(
         children: [
           Card(
-            shadowColor: plte.activateColor,
-            elevation: 3,
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),
             child: ListTile(
 
               leading: Icon(
@@ -105,12 +105,13 @@ Widget textField2(String label){
               title: Text(value),
             ),
           ),
+          SizedBox(height: 10),
           Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),
             child: ListTile(
               leading: Icon(
                 Icons.arrow_forward,
@@ -121,80 +122,78 @@ Widget textField2(String label){
             ),
           ),
 
+        text("Enter Complaint Detail"),
           Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
+
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),
             child: ListTile(
-              title: textfield("Enter Consumer number"),
+              title: textfield("Detail"),
             ),
           ),
+          text("Enter Province"),
           Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
+
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            child: ListTile(
-              title: textfield("Enter Complaint Type"),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),child: ListTile(
+              title: textfield("Province"),
+            ),
+          ),
+          text("Enter District"),
+          Card(
+
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),child: ListTile(
+              title: textfield("District"),
+            ),
+          ),
+          text("Enter Tehsil"),
+          Card(
+
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),child: ListTile(
+              title: textfield("Tehsil"),
             ),
           ),
 
+          text("Enter city"),
+
           Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            child: ListTile(
-              title: textfield("Enter Complaint Location"),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),          child: ListTile(
+              title: textfield("City"),
             ),
           ),
+          text("Add Attachments"),
           Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
             color: plte.backgroundColor,
             shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),
             child: ListTile(
-              title: textfield("Enter Province"),
-            ),
-          ),
-          Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            child: ListTile(
-              title: textfield("Enter District"),
-            ),
-          ),
-          Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            child: ListTile(
-              title: textfield("Enter Tehsil"),
+              title: textfield("Attachmments"),
             ),
           ),
 
-          Card(
-            elevation: 3,
-            shadowColor: plte.activateColor,
-            color: plte.backgroundColor,
-            shape: StadiumBorder(),
-            margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            child: ListTile(
-              title: textfield("Enter City"),
-            ),
-          ),
+
       MaterialButton(
-          elevation: 3,
+          elevation: 1.5,
 
           minWidth: 150,
           splashColor: plte.textColor,
@@ -208,12 +207,20 @@ Widget textField2(String label){
       ),
     );
   }
+  Widget text(String str){
+    return
+      Container(
+          margin: EdgeInsets.only(left: 0,bottom: 0,top: 10),
+          child: Text(str,style: TextStyle(color: plte.activateColor,fontSize: 18),));
+  }
   Widget textfield(
       String label){
 return
     TextField(
       textCapitalization: TextCapitalization.words,
+
       decoration: InputDecoration(
+
         prefixIcon: Icon(
           Icons.adjust_rounded,
           color: Colors.white,
@@ -225,11 +232,10 @@ borderSide: BorderSide.none
         ),
 
         contentPadding: EdgeInsets.all(8.0),
-
-        labelText: label,labelStyle: TextStyle(color: Colors.white),
-                    hintStyle: TextStyle(color: Colors.white)
+                    labelStyle: TextStyle(color: Colors.white)
       ),
       style: TextStyle(color: Colors.white),
+
 
     );
   }
