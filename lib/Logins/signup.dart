@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
-import 'pallete.dart';
+import '../screens/pallete.dart';
 
 class signupScreen extends StatefulWidget {
   @override

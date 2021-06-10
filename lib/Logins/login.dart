@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
-import 'package:uscb/screens/mainscreen.dart';
-import 'package:uscb/screens/signup.dart';
-import 'pallete.dart';
+import '../screens/pallete.dart';
 class loginScreen extends StatefulWidget {
   @override
   _loginScreenState createState() => _loginScreenState();

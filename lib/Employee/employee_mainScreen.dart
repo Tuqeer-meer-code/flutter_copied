@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uscb/Routes/MyRoutes.dart';
-import 'drawer.dart';
-import 'pallete.dart';
-
-class mainScreen extends StatefulWidget {
+import 'package:uscb/screens/drawer.dart';
+import 'package:uscb/screens//pallete.dart';
+class EmpmainScreen extends StatefulWidget {
   @override
-  _mainScreenState createState() => _mainScreenState();
+  _EmpmainScreenState createState() => _EmpmainScreenState();
 }
 
-class _mainScreenState extends State<mainScreen> {
+class _EmpmainScreenState extends State<EmpmainScreen> {
   @override
   var name="TUQEER";
   Widget build(BuildContext context) {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: plte.btnColor));
+        statusBarColor: plte.btnColor));
 
     return Scaffold(
       appBar: AppBar(
@@ -73,15 +71,13 @@ class _mainScreenState extends State<mainScreen> {
                 children: [
                   IconButton(
 
-                      icon: Icon(Icons.app_registration),
+                      icon: Icon(Icons.add_to_home_screen_sharp),
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
-                      }),
+                      onPressed: () {}),
                   Text(
-                    "Register Complaint",
+                    "View Complaint",
                     style: TextStyle(
                         color: plte.textColor, fontWeight: FontWeight.bold),
                   ),
@@ -93,25 +89,13 @@ class _mainScreenState extends State<mainScreen> {
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: () {}),
+                      onPressed: (){} ),
                   Text(
-                    "Your Complaint Status",
+                    "Update Status",
                     style: TextStyle(
                         color: plte.textColor, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 15,),
-                  IconButton(
-                      icon: Icon(Icons.recommend),
-                      color: Colors.white,
-                      iconSize: 70,
-                      splashColor: plte.btnColor,
-                      onPressed: () {}),
-                  Text(
-                    "Give Response",
-                    style: TextStyle(
-
-                        color: plte.textColor, fontWeight: FontWeight.bold),
-                  ),
                 ],
               ),
             ),
