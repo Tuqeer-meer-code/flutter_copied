@@ -73,6 +73,9 @@ String c_main;
                     FlatButton.icon(
                       onPressed: () {
                         c_main="Water";
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return complaintScreen(value : c_main);
+                        }));
                       },
                       icon: Icon(Icons.water_damage_outlined,color: Colors.white,),
                       label: Text("Water",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
@@ -103,6 +106,10 @@ String c_main;
                     FlatButton.icon(
                       onPressed: () {
                         c_main="Garbage";
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return complaintScreen(value : c_main);
+                        }));
+
                       },
                       icon: Icon(Icons.all_inclusive_sharp,color: Colors.white,),
                       label: Text("Garbage",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
