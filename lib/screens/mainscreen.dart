@@ -68,51 +68,53 @@ class _mainScreenState extends State<mainScreen> {
             right: 0,
             child: Container(
               height: 400,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
 
-                      icon: Icon(Icons.app_registration),
-                      color: Colors.white,
-                      iconSize: 70,
-                      splashColor: plte.btnColor,
-                      onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
-                      }),
-                  Text(
-                    "Register Complaint",
-                    style: TextStyle(
-                        color: plte.textColor, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  IconButton(
-                      icon: Icon(Icons.info),
-                      color: Colors.white,
-                      iconSize: 70,
-                      splashColor: plte.btnColor,
-                      onPressed: () {}),
-                  Text(
-                    "Your Complaint Status",
-                    style: TextStyle(
-                        color: plte.textColor, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 15,),
-                  IconButton(
-                      icon: Icon(Icons.recommend),
-                      color: Colors.white,
-                      iconSize: 70,
-                      splashColor: plte.btnColor,
-                      onPressed: () {}),
-                  Text(
-                    "Give Response",
-                    style: TextStyle(
+                        icon: Icon(Icons.app_registration),
+                        color: Colors.white,
+                        iconSize: 70,
+                        splashColor: plte.btnColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
+                        }),
+                    Text(
+                      "Register Complaint",
+                      style: TextStyle(
+                          color: plte.textColor, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    IconButton(
+                        icon: Icon(Icons.info),
+                        color: Colors.white,
+                        iconSize: 70,
+                        splashColor: plte.btnColor,
+                        onPressed: () {}),
+                    Text(
+                      "Your Complaint Status",
+                      style: TextStyle(
+                          color: plte.textColor, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 15,),
+                    IconButton(
+                        icon: Icon(Icons.recommend),
+                        color: Colors.white,
+                        iconSize: 70,
+                        splashColor: plte.btnColor,
+                        onPressed: () {}),
+                    Text(
+                      "Give Response",
+                      style: TextStyle(
 
-                        color: plte.textColor, fontWeight: FontWeight.bold),
-                  ),
-                ],
+                          color: plte.textColor, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
             ),
           )

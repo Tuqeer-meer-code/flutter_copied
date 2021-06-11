@@ -12,7 +12,21 @@ class complaintScreen extends StatefulWidget {
 class _complaintScreenState extends State<complaintScreen> {
 String value;
 String company;
+String cIssue;
 _complaintScreenState(this.value);
+final ElectriccomplaintIsue={
+"1" :"Billing complaint",
+  "2" :"complaint against employee",
+  "3" :"Electric Theft",
+  "4" :"Excess Billing",
+  "5" :"Fault on Line",
+  "6" :"Genral Complaint",
+  "7" :"Installation of new connection",
+  "8" :"Low Voltage",
+  "9" :"Non Delivery of Bill",
+  "10" :"Replacement of defective Meter",
+  "11" :"Violation of Load management shedule",
+};
   final internet={
     "1": "NayaTel",
     "2": "SPA",
@@ -120,6 +134,21 @@ Widget textField2(String label){
               ),
               title: dropDownC2(),
             ),
+          ),Card(
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
+            color: plte.backgroundColor,
+            shape: StadiumBorder(),
+            margin: EdgeInsets.only(left: 30,right: 30,top: 10,bottom: 10),
+            child: ListTile(
+
+              leading: Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+                title: dropDownC3(),
+
+            ),
           ),
 
         text("Enter Complaint Detail"),
@@ -213,6 +242,7 @@ Widget textField2(String label){
           margin: EdgeInsets.only(left: 0,bottom: 0,top: 10),
           child: Text(str,style: TextStyle(color: plte.activateColor,fontSize: 18),));
   }
+
   Widget textfield(
       String label){
 return
@@ -239,6 +269,30 @@ borderSide: BorderSide.none
 
     );
   }
+dropDownC3(){
+  valueChangeOfComaplaintIssue();
+  return DropdownButton<String>(
+    dropdownColor: plte.backgroundColor,
+    items: menuitems,
+    hint: Text("Select Issue Type",style: TextStyle(color: Colors.white)),
+    onChanged: (val){
+      setState(() {
+
+        cIssue=val;
+      });
+    },
+    value: cIssue,);
+}
+valueChangeOfComaplaintIssue(){
+
+  if(value=="Electric"){
+    menuitems=[];
+    setState(() {
+      ElectricIssueC3();
+
+    });
+  }
+}
   dropDownC2() {
     valuechange();
     return DropdownButton<String>(
@@ -290,6 +344,13 @@ void gasF(){
   void internetF() {
     for (String key in internet.keys) {
       menuitems.add(DropdownMenuItem(value: internet[key], child: Text(internet[key])));
+    }
+
+  }
+  void ElectricIssueC3(){
+    ;
+    for (String k in ElectriccomplaintIsue.keys){
+      menuitems.add(DropdownMenuItem(value: ElectriccomplaintIsue[k],child: Text(ElectriccomplaintIsue[k]),));
     }
   }
   }

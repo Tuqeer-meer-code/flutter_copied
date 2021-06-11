@@ -8,10 +8,11 @@ class employeeLogin extends StatefulWidget {
 
 class _employeeLoginState extends State<employeeLogin> {
   var _formkey = GlobalKey<FormState>();
+  final emailconn=TextEditingController();
+  final password1=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final emailcon=TextEditingController();
-    final password=TextEditingController();
     return Scaffold(
       backgroundColor: plte.backgroundColor,
       body: Stack(
@@ -83,12 +84,11 @@ class _employeeLoginState extends State<employeeLogin> {
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
                               child: TextFormField(
-                                controller: emailcon,
                                 validator: (String value) {
                                   if (value.isEmpty) {
                                     return "Required";
                                   }
-                                },
+                                },controller: emailconn,
                                 decoration: InputDecoration(
                                     errorStyle: TextStyle(
                                       letterSpacing: 1,
@@ -106,6 +106,7 @@ class _employeeLoginState extends State<employeeLogin> {
                                     contentPadding: EdgeInsets.all(8.0),
                                     hintText: "Enter your Email",
                                     labelText: "Email"
+
                                 ),
                               ),
                             ),
@@ -138,7 +139,7 @@ class _employeeLoginState extends State<employeeLogin> {
                                 hintText: "Enter Password",
                                 labelText: "Password",
                               ),
-                              controller: password,
+                              controller: password1,
                             ),
                             SizedBox(height: 20,)
                             ,],

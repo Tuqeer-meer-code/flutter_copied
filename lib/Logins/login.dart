@@ -9,10 +9,11 @@ class loginScreen extends StatefulWidget {
 
 class _loginScreenState extends State<loginScreen> {
   var _formkey = GlobalKey<FormState>();
+  final emailcon=TextEditingController();
+  final password=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final emailcon=TextEditingController();
-    final password=TextEditingController();
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: plte.btnColor));
