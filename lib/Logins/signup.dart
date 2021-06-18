@@ -1,19 +1,27 @@
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:uscb/main.dart';
+import 'package:uscb/models/signup.dart';
 import '../screens/pallete.dart';
+class signupScreen extends StatefulWidget{
 
-class signupScreen extends StatefulWidget {
   @override
   _signupScreenState createState() => _signupScreenState();
 }
 
 class _signupScreenState extends State<signupScreen> {
-
+Box<signUpModel> signUpBox;
   @override
   int group = 1;
   var _formkey = GlobalKey<FormState>();
-
+@override
+void initState(){
+  super.initState();
+  signUpBox=Hive.box<signUpModel>(signUpBoxName);
+}
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: plte.btnColor));
@@ -89,42 +97,43 @@ class _signupScreenState extends State<signupScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Name",name),
+                            textfield("Name",namecn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Cnic",cnic),
+                            textfield("Cnic",cniccn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Email",email),
+                            textfield("Email",emailcn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("House address",house),
+                            textfield("House address",housecn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Province",province),
+                            textfield("Province",provincecn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("District",district),
+                            textfield("District",districtcn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Tehsil",tehsil),
+                            textfield("Tehsil",tehsilcn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("City",city),
+                            textfield("City",citycn),
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Password",password),
+                            textfield("Password",passwordcn),
                             SizedBox(
                               height: 150,
                             ),
@@ -160,6 +169,19 @@ class _signupScreenState extends State<signupScreen> {
                         setState(() {
                           if (_formkey.currentState.validate()) {
                             Navigator.pushNamed(context, MyRoutes.MainScreen);
+                            final String name=namecn.toString();
+                            final String cnic=cniccn.toString();
+                            final String email=emailcn.toString();
+                            final String houseAdd=housecn.toString();
+                            final String province=provincecn.toString();
+                            final String district=districtcn.toString();
+                            final String tehsil=tehsilcn.toString();
+                            final String password=passwordcn.toString();
+                            signUpModel s=new signUpModel(name: name,cnic: cnic,email: email,
+                                hosueAddress: houseAdd,province: province,district: district,tehsil: tehsil
+                                ,password: password
+                            );
+                            signUpBox.add(s);
                           }
                         });
                       }),
@@ -190,15 +212,15 @@ class _signupScreenState extends State<signupScreen> {
       ),
     );
   }
-  final password=TextEditingController();
-  final district=TextEditingController();
-  final tehsil=TextEditingController();
-  final city=TextEditingController();
-  final province=TextEditingController();
-final name=TextEditingController();
-  final cnic=TextEditingController();
-  final email=TextEditingController();
-  final house=TextEditingController();
+  final passwordcn=TextEditingController();
+  final districtcn=TextEditingController();
+  final tehsilcn=  TextEditingController();
+  final citycn=    TextEditingController();
+  final provincecn=TextEditingController();
+final namecn=      TextEditingController();
+  final cniccn=    TextEditingController();
+  final emailcn=   TextEditingController();
+  final housecn=   TextEditingController();
   Widget textfield(String title ,TextEditingController con ) {
 
     return TextFormField(
@@ -226,7 +248,5 @@ final name=TextEditingController();
       labelText: title
     ),
     );
-
   }
-
 }

@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
@@ -10,7 +12,7 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   var _formkey = GlobalKey<FormState>();
   final emailcon=TextEditingController();
-  final password=TextEditingController();
+  final passwordcon=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +145,7 @@ class _loginScreenState extends State<loginScreen> {
                                 hintText: "Enter Password",
                                 labelText: "Password",
                               ),
-                              controller: password,
+                              controller: passwordcon,
                             ),
               SizedBox(height: 20,)
               ,],
