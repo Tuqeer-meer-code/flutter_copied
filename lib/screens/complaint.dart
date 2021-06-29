@@ -91,7 +91,7 @@ class _complaintScreenState extends State<complaintScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: plte.backgroundColor,
+      color: plte.btnColor,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -100,9 +100,9 @@ class _complaintScreenState extends State<complaintScreen> {
             "Register Complaint of $value",
             style: TextStyle(color: plte.textColor),
           )),
-          backgroundColor: plte.backgroundColor,
+           backgroundColor: plte.backgroundColor,
         ),
-        body: Material(color: plte.backgroundColor, child: singlescroll()),
+        body: Material(color: plte.iconColor, child: singlescroll()),
       ),
     );
   }

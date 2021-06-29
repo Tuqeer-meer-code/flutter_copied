@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/c_main.dart';
 import 'package:uscb/screens/complaint.dart';
@@ -11,17 +10,7 @@ import 'package:uscb/Logins/signup.dart';
 import 'Employee/employee_mainScreen.dart';
 import 'Logins/EmpLogin.dart';
 import 'Logins/SignUpLoginButton.dart';
-import 'package:hive/hive.dart';
-import 'models/signup.dart';
-
-
-const String signUpBoxName='signUp';
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  final document=await getApplicationDocumentsDirectory();
-  Hive.init(document.path);
-  Hive.registerAdapter(signUpModelAdapter());
-await  Hive.openBox<signUpModel>(signUpBoxName);
+void main() {
   runApp(MyApp());
 }
 

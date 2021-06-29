@@ -1,10 +1,6 @@
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
-import 'package:uscb/main.dart';
-import 'package:uscb/models/signup.dart';
 import '../screens/pallete.dart';
 class signupScreen extends StatefulWidget{
 
@@ -13,15 +9,10 @@ class signupScreen extends StatefulWidget{
 }
 
 class _signupScreenState extends State<signupScreen> {
-Box<signUpModel> signUpBox;
   @override
   int group = 1;
   var _formkey = GlobalKey<FormState>();
 @override
-void initState(){
-  super.initState();
-  signUpBox=Hive.box<signUpModel>(signUpBoxName);
-}
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: plte.btnColor));
@@ -169,19 +160,6 @@ void initState(){
                         setState(() {
                           if (_formkey.currentState.validate()) {
                             Navigator.pushNamed(context, MyRoutes.MainScreen);
-                            final String name=namecn.toString();
-                            final String cnic=cniccn.toString();
-                            final String email=emailcn.toString();
-                            final String houseAdd=housecn.toString();
-                            final String province=provincecn.toString();
-                            final String district=districtcn.toString();
-                            final String tehsil=tehsilcn.toString();
-                            final String password=passwordcn.toString();
-                            signUpModel s=new signUpModel(name: name,cnic: cnic,email: email,
-                                hosueAddress: houseAdd,province: province,district: district,tehsil: tehsil
-                                ,password: password
-                            );
-                            signUpBox.add(s);
                           }
                         });
                       }),
