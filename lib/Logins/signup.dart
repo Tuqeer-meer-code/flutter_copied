@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:uscb/db/signUpDb.dart';
 import '../screens/pallete.dart';
 class signupScreen extends StatefulWidget{
 
@@ -96,31 +97,7 @@ class _signupScreenState extends State<signupScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            textfield("Cnic",cniccn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("Email",emailcn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("House address",housecn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("Province",provincecn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("District",districtcn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("Tehsil",tehsilcn),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            textfield("City",citycn),
+                            textfield("Email", emailcn),
                             SizedBox(
                               height: 10,
                             ),
@@ -159,6 +136,13 @@ class _signupScreenState extends State<signupScreen> {
                       onPressed: () {
                         setState(() {
                           if (_formkey.currentState.validate()) {
+                            RegisterDB(
+                              name: namecn.text,
+                              email: emailcn.text,
+                              password: passwordcn.text,
+                            ).register().then((value) {
+                              print('Response : $value');
+                            });
                             Navigator.pushNamed(context, MyRoutes.MainScreen);
                           }
                         });
@@ -191,14 +175,8 @@ class _signupScreenState extends State<signupScreen> {
     );
   }
   final passwordcn=TextEditingController();
-  final districtcn=TextEditingController();
-  final tehsilcn=  TextEditingController();
-  final citycn=    TextEditingController();
-  final provincecn=TextEditingController();
-final namecn=      TextEditingController();
-  final cniccn=    TextEditingController();
+  final namecn=      TextEditingController();
   final emailcn=   TextEditingController();
-  final housecn=   TextEditingController();
   Widget textfield(String title ,TextEditingController con ) {
 
     return TextFormField(
