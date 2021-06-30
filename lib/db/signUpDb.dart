@@ -26,7 +26,7 @@ Future<String>  register()async{
       return "Error";
     }
   }catch(e){
-    return "ERROR IN REGISTER FUNCTION ==> $e";;
+    return "ERROR $e";;
   }
 }
 

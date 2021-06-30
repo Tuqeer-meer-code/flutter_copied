@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:uscb/db/loginDB.dart';
 import '../screens/pallete.dart';
 class loginScreen extends StatefulWidget {
   @override
@@ -123,6 +124,7 @@ class _loginScreenState extends State<loginScreen> {
                                   return "Required";
                                 }
                               },
+
                               obscureText: true,
                               obscuringCharacter: '*',
                               decoration: InputDecoration(
@@ -169,6 +171,12 @@ class _loginScreenState extends State<loginScreen> {
 
                       onPressed: (){
                         if (_formkey.currentState.validate()) {
+                          LoginDB(
+                            email: emailcon.text,
+                            password: passwordcon.text
+                          ).login().then((value){
+                            print("Login Status $value");
+                          });
                           Navigator.pushNamed(context, MyRoutes.MainScreen);
                         }}),
                 )

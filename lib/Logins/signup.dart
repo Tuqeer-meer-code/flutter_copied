@@ -26,9 +26,9 @@ class _signupScreenState extends State<signupScreen> {
               right: 0,
               left: 0,
               child: Container(
-                height: 200,
+                height: 250,
                 child: Container(
-                  padding: EdgeInsets.only(top: 50, left: 20),
+                  padding: EdgeInsets.only(top: 100, left: 20),
                   color: Color(0xff3b5999).withOpacity(.30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,10 +62,10 @@ class _signupScreenState extends State<signupScreen> {
                 ),
               )),
           Positioned(
-              top: 120,
+              top: 200,
               child: Container(
                   padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                  height: 400,
+                  height: 250,
                   width: MediaQuery.of(context).size.width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
@@ -111,7 +111,7 @@ class _signupScreenState extends State<signupScreen> {
                     ),
                   ))),
           Positioned(
-            top: 530,
+            top: 390,
             left: 30,
             child: SingleChildScrollView(
               child: Column(
