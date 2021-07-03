@@ -68,54 +68,72 @@ class _mainScreenState extends State<mainScreen> {
             right: 0,
             child: Container(
               height: 400,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
+              child: GridView.custom(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                childrenDelegate: SliverChildListDelegate(
+                  [
+                    Column(children: [
+                      IconButton(
+                          icon: Icon(Icons.add_box_rounded),
+                          color: plte.activateColor,
+                          iconSize: 70,
+                          splashColor: plte.btnColor,
+                          onPressed: () {}),
+                      Text(
+                        "Add Details",
+                        style: TextStyle(
+
+                            color: plte.textColor, fontWeight: FontWeight.bold),
+                      )
+
+                    ],),
+                    Column(children: [     IconButton(
 
                         icon: Icon(Icons.app_registration),
-                        color: Colors.white,
+                        color: plte.activateColor,
                         iconSize: 70,
                         splashColor: plte.btnColor,
                         onPressed: () {
                           Navigator.pushNamed(context, MyRoutes.ComplainButtonsChoice);
-                        }),
-                    Text(
-                      "Register Complaint",
-                      style: TextStyle(
-                          color: plte.textColor, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    IconButton(
-                        icon: Icon(Icons.info),
-                        color: Colors.white,
-                        iconSize: 70,
-                        splashColor: plte.btnColor,
-                        onPressed: () {}),
-                    Text(
-                      "Your Complaint Status",
-                      style: TextStyle(
-                          color: plte.textColor, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 15,),
-                    IconButton(
-                        icon: Icon(Icons.recommend),
-                        color: Colors.white,
-                        iconSize: 70,
-                        splashColor: plte.btnColor,
-                        onPressed: () {}),
-                    Text(
-                      "Give Response",
-                      style: TextStyle(
 
-                          color: plte.textColor, fontWeight: FontWeight.bold),
-                    ),
+                        }),
+                      Text(
+                        "Register Complaint",
+                        style: TextStyle(
+                            color: plte.textColor, fontWeight: FontWeight.bold),
+                      ),
+                    ],),
+                    Column(children: [ IconButton(
+                        icon: Icon(Icons.info),
+                        color: plte.activateColor,
+                        iconSize: 70,
+                        splashColor: plte.btnColor,
+                        onPressed: () {}),
+                      Text(
+                        "Your Complaint Status",
+                        style: TextStyle(
+                            color: plte.textColor, fontWeight: FontWeight.bold),
+                      ),
+
+                    ],),
+                    Column(children: [ IconButton(
+                        icon: Icon(Icons.recommend),
+                        color: plte.activateColor,
+                        iconSize: 70,
+                        splashColor: plte.btnColor,
+                        onPressed: () {}),
+                      Text(
+                        "Give Response",
+                        style: TextStyle(
+
+                            color: plte.textColor, fontWeight: FontWeight.bold),
+                      )
+
+                    ],),
+
                   ],
                 ),
-              ),
+              )
             ),
           )
         ],

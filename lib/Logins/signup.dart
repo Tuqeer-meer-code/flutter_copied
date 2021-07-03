@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
-import 'package:uscb/db/signUpDb.dart';
 import '../screens/pallete.dart';
 class signupScreen extends StatefulWidget{
 
@@ -136,13 +135,6 @@ class _signupScreenState extends State<signupScreen> {
                       onPressed: () {
                         setState(() {
                           if (_formkey.currentState.validate()) {
-                            RegisterDB(
-                              name: namecn.text,
-                              email: emailcn.text,
-                              password: passwordcn.text,
-                            ).register().then((value) {
-                              print('Response : $value');
-                            });
                             Navigator.pushNamed(context, MyRoutes.MainScreen);
                           }
                         });
