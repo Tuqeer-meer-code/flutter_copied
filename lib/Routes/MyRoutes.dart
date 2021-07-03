@@ -9,5 +9,5 @@ class MyRoutes{
   static String LoginMain ="/Login main";
   static String loginEmp ="/Employee Login main";
   static String EmpMainScreen="/Employee Main screen page";
-
+  static String add="/customer will add consumer numbers";
 }

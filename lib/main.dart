@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:uscb/screens/addConsumer.dart';
 import 'package:uscb/screens/c_main.dart';
 import 'package:uscb/screens/complaint.dart';
 import 'package:uscb/Logins/login.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginEmp:(context)=>employeeLogin(),
         MyRoutes.LoginMain:(context)=>Login(),
         MyRoutes.EmpMainScreen:(context)=>EmpmainScreen(),
+        MyRoutes.add:(context)=>consumerDetail(),
       });
   }
 }
