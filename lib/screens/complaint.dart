@@ -1,21 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'pallete.dart';
-
 class complaintScreen extends StatefulWidget {
   String value;
-
   complaintScreen({this.value});
-
   @override
   _complaintScreenState createState() => _complaintScreenState(value);
 }
-
 class _complaintScreenState extends State<complaintScreen> {
   String value;
   String company;
   String cIssue;
-
   _complaintScreenState(this.value);
  final InternetComplaintIssue={
    "1":"3G/4G Related Isseu",
@@ -94,6 +89,7 @@ class _complaintScreenState extends State<complaintScreen> {
       color: plte.btnColor,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: plte.backgroundColor,
         appBar: AppBar(
           title: Center(
               child: Text(
@@ -102,7 +98,8 @@ class _complaintScreenState extends State<complaintScreen> {
           )),
            backgroundColor: plte.backgroundColor,
         ),
-        body: Material(color: plte.iconColor, child: singlescroll()),
+        body: Material(
+            color: plte.backgroundColor, child: singlescroll()),
       ),
     );
   }
@@ -129,29 +126,22 @@ class _complaintScreenState extends State<complaintScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Card(
 
+          text("Select Your Consumer Number"),
+          SizedBox(height: 10),
+          Card(
             elevation: 5,
             shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
+            color: plte.btnColor,
             margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
             child: ListTile(
-              leading: Text(value,style: TextStyle(color: plte.activateColor,fontSize: 16,fontWeight:FontWeight.bold),),
+              title: textfield("Detail"),
             ),
           ),
-          SizedBox(height: 10),
-          Card( margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            elevation: 5,
-            color: plte.backgroundColor,
-            child: ClipRect(
-              child: dropDownC2(),
-            ),
-          ),
-          SizedBox(height: 10),
           Card(
             margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
             elevation: 5,
-            color: plte.backgroundColor,
+            color: plte.btnColor,
             child: ClipRect(
               child: dropDownC3(),
             ),
@@ -160,54 +150,10 @@ class _complaintScreenState extends State<complaintScreen> {
           Card(
             elevation: 5,
             shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
+            color: plte.btnColor,
             margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
             child: ListTile(
               title: textfield("Detail"),
-            ),
-          ),
-        SizedBox(height: 10),
-          text("Enter Province"),
-          Card(
-            elevation: 5,
-            shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            child: ListTile(
-              title: textfield("Province"),
-            ),
-          ),
-          SizedBox(height: 10),
-          text("Enter District"),
-          Card(
-            elevation: 5,
-            shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            child: ListTile(
-              title: textfield("District"),
-            ),
-          ),
-          SizedBox(height: 10),
-          text("Enter Tehsil"),
-          Card(
-            elevation: 5,
-            shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            child: ListTile(
-              title: textfield("Tehsil"),
-            ),
-          ),
-          SizedBox(height: 10),
-          text("Enter city"),
-          Card(
-            elevation: 5,
-            shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
-            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            child: ListTile(
-              title: textfield("City"),
             ),
           ),
           SizedBox(height: 10),
@@ -215,7 +161,7 @@ class _complaintScreenState extends State<complaintScreen> {
           Card(
             elevation: 5,
             shadowColor: Colors.deepPurpleAccent,
-            color: plte.backgroundColor,
+            color: plte.btnColor,
             margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
             child: ListTile(
               title: textfield("Attachmments"),
@@ -235,7 +181,7 @@ class _complaintScreenState extends State<complaintScreen> {
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
-              color: plte.backgroundColor,
+              color: plte.btnColor,
               onPressed: () {}),
         ],
       ),

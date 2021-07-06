@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
 import '../screens/pallete.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 class loginScreen extends StatefulWidget {
   @override
   _loginScreenState createState() => _loginScreenState();
@@ -13,7 +14,11 @@ class _loginScreenState extends State<loginScreen> {
   var _formkey = GlobalKey<FormState>();
   final emailcon=TextEditingController();
   final passwordcon=TextEditingController();
-
+  gettingdata()async{
+    var url=Uri.parse("http://192.168.43.88/FinalYearProject/api/uscb/allConsumers");
+    http.Response response= await http.get(url);
+    print(json.decode(response.body));
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -172,7 +177,8 @@ class _loginScreenState extends State<loginScreen> {
 
                       onPressed: (){
                         if (_formkey.currentState.validate())
-                          Navigator.pushNamed(context, MyRoutes.MainScreen);
+                          //gettingdata();
+                           Navigator.pushNamed(context, MyRoutes.MainScreen);
                         }),
                 )
                 ,
