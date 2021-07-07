@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:uscb/api/api.dart';
 import '../screens/pallete.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 class loginScreen extends StatefulWidget {
+
   @override
   _loginScreenState createState() => _loginScreenState();
 }
@@ -15,8 +17,27 @@ class _loginScreenState extends State<loginScreen> {
   final emailcon=TextEditingController();
   final passwordcon=TextEditingController();
   gettingdata()async{
-    var url=Uri.parse("http://192.168.43.88/FinalYearProject/api/uscb/allConsumers");
+    var url=Uri.parse("http://192.168.0.121/FinalYearProject/api/uscb/allConsummers");
     http.Response response= await http.get(url);
+    print(json.decode(response.body));
+  }
+  login()async{
+    var url=Uri.parse(Api.Userlogin+"?Email=${emailcon.text}&Password=${passwordcon.text}");
+
+    http.Response response= await http.get(url);
+    if(response.statusCode==200){
+      //Navugator to where tyo
+
+      Navigator.pushNamed(context, MyRoutes.MainScreen);
+    }
+    else if(response.statusCode==404){
+      showDialog(context: context, builder: (context)=>AlertDialog(title:Text("Error"),content:Text("Email or Password Incorrect"),actions:[
+        ElevatedButton(
+
+            onPressed:(){Navigator.pop(context);} , child: Text("Okay"))
+      ]));
+    }
+
     print(json.decode(response.body));
   }
   @override
@@ -177,8 +198,9 @@ class _loginScreenState extends State<loginScreen> {
 
                       onPressed: (){
                         if (_formkey.currentState.validate())
+                          login();
                           //gettingdata();
-                           Navigator.pushNamed(context, MyRoutes.MainScreen);
+
                         }),
                 )
                 ,

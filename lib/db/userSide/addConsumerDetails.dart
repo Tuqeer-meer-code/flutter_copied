@@ -1,10 +1,10 @@
 import 'dart:convert';
-UserConsumerAdd userConsumerAddFromJson(String str) => UserConsumerAdd.fromJson(json.decode(str));
+userModel userModelFromJson(String str) => userModel.fromJson(json.decode(str));
 
-String userConsumerAddToJson(UserConsumerAdd data) => json.encode(data.toJson());
+String userConsumerAddToJson(userModel data) => json.encode(data.toJson());
 
-class UserConsumerAdd {
-  UserConsumerAdd({
+class userModel {
+  userModel({
     this.id,
     this.hint,
     this.consumerNo,
@@ -14,7 +14,7 @@ class UserConsumerAdd {
   String hint;
   String consumerNo;
 
-  factory UserConsumerAdd.fromJson(Map<String, dynamic> json) => UserConsumerAdd(
+  factory userModel.fromJson(Map<String, dynamic> json) => userModel(
     id: json["id"],
     hint: json["hint"],
     consumerNo: json["consumer_no"],
