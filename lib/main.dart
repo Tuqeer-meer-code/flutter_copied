@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/addConsumer.dart';
 import 'package:uscb/screens/c_main.dart';
@@ -11,7 +12,8 @@ import 'package:uscb/Logins/signup.dart';
 import 'Employee/employee_mainScreen.dart';
 import 'Logins/EmpLogin.dart';
 import 'Logins/SignUpLoginButton.dart';
-void main() {
+void main()async {
+  await GetStorage.init();
   runApp(MyApp());
 }
 

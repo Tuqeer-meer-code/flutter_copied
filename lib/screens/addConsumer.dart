@@ -4,33 +4,111 @@ import 'package:uscb/screens/pallete.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 class consumerDetail extends StatefulWidget {
+  final int userId;
+  const consumerDetail({Key key,this.userId}) : super(key :key);
   @override
-  _consumerDetailState createState() => _consumerDetailState();
+  _consumerDetailState createState() => _consumerDetailState(this.userId);
 }
 
 class _consumerDetailState extends State<consumerDetail> {
-  TextEditingController hint=new TextEditingController();
-  TextEditingController consumerno=new TextEditingController();
-  savedata()async{
+  TextEditingController ehint=new TextEditingController();
+  TextEditingController econsumerno=new TextEditingController();
+  TextEditingController ghint=new TextEditingController();
+  TextEditingController gconsumerno=new TextEditingController();
+  _consumerDetailState(int userId);
+  saveElectricData()async{
     print("Savingdata");
     print(Api.addconsumer_API);
+    print(widget.userId.toString());
     var data={
-      "id": "1",
-      "hint": hint.text,
-      "consumer_no": consumerno.text,
+      "id": "${widget.userId}",
+      "hint": ehint.text,
+      "consumer_no": econsumerno.text,
     };
     http.Response response=await http.post(Uri.parse(Api.addconsumer_API),body:data);
     var responsedata=json.decode(response.body);
     print(responsedata);
     if(responsedata=="success"){
       print("Done");
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text("Success"),
+              content: Text("Your Electric Consumer Number Added"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Okay"))
+              ]));
+
+    }
+    if(responsedata=="No Consumer in database"){
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text("Error"),
+              content: Text("The consumer number you entered is incorrect"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Okay"))
+              ]));
+
+    }
+  }
+  saveGasData()async{
+    print("Savingdata");
+    print(Api.addconsumer_API);
+    print(widget.userId.toString());
+    var data={
+      "id": "${widget.userId}",
+      "hint": ehint.text,
+      "consumer_no": econsumerno.text,
+    };
+    http.Response response=await http.post(Uri.parse(Api.addconsumer_API),body:data);
+    var responsedata=json.decode(response.body);
+    print(responsedata);
+    if(responsedata=="success"){
+      print("Done");
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text("Success"),
+              content: Text("Your Gas Number Meter has been Added"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Okay"))
+              ]));
+
+    }
+    if(responsedata=="No Consumer in database"){
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text("Error"),
+              content: Text("The consumer number you entered is incorrect"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Okay"))
+              ]));
+
     }
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Consumer Nummers"),
+        title: Text("Add Consumer Numbers ${widget.userId} "),
         shadowColor: Colors.black,
         backgroundColor: plte.btnColor,
       ),
@@ -43,7 +121,7 @@ class _consumerDetailState extends State<consumerDetail> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller:consumerno,
+                controller:econsumerno,
               decoration: InputDecoration(
               prefixIcon: Icon(
                 Icons.adjust_rounded,
@@ -63,7 +141,7 @@ class _consumerDetailState extends State<consumerDetail> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextField(
-                    controller:hint,
+                    controller:ehint,
                     decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.adjust_rounded,
@@ -95,12 +173,13 @@ class _consumerDetailState extends State<consumerDetail> {
                     ),
                     color: plte.btnColor,
                     onPressed: () async{
-                      savedata();
+                      saveElectricData();
                     }),
 
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextField(
+                    controller: gconsumerno,
                     decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.adjust_rounded,
@@ -120,6 +199,7 @@ class _consumerDetailState extends State<consumerDetail> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextField(
+                    controller: ghint,
                     decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.adjust_rounded,
@@ -150,7 +230,9 @@ class _consumerDetailState extends State<consumerDetail> {
                           fontWeight: FontWeight.bold),
                     ),
                     color: plte.btnColor,
-                    onPressed: () {}),
+                    onPressed: () {
+                      saveGasData();
+                    }),
 
                 SizedBox(
                   height: MediaQuery.of(context).viewInsets.bottom,

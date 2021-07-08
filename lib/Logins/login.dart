@@ -1,50 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/api/api.dart';
+import 'package:uscb/screens/mainscreen.dart';
 import '../screens/pallete.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-class loginScreen extends StatefulWidget {
 
+class loginScreen extends StatefulWidget {
   @override
   _loginScreenState createState() => _loginScreenState();
 }
 
 class _loginScreenState extends State<loginScreen> {
-  bool visible=false;
+ int loginScreen;
+  bool visible = false;
+  Map<String, dynamic> map;
   var _formkey = GlobalKey<FormState>();
-  final emailcon=TextEditingController();
-  final passwordcon=TextEditingController();
-  gettingdata()async{
-    var url=Uri.parse("http://192.168.0.121/FinalYearProject/api/uscb/allConsummers");
-    http.Response response= await http.get(url);
+  final emailcon = TextEditingController();
+  final passwordcon = TextEditingController();
+
+  gettingdata() async {
+    var url = Uri.parse(
+        "http://192.168.0.121/FinalYearProject/api/uscb/allConsummers");
+    http.Response response = await http.get(url);
     print(json.decode(response.body));
   }
-  login()async{
-    var url=Uri.parse(Api.Userlogin+"?Email=${emailcon.text}&Password=${passwordcon.text}");
 
-    http.Response response= await http.get(url);
-    if(response.statusCode==200){
-      //Navugator to where tyo
+  login() async {
+    var url = Uri.parse(
+        Api.Userlogin + "?Email=${emailcon.text}&Password=${passwordcon.text}");
 
-      Navigator.pushNamed(context, MyRoutes.MainScreen);
+    http.Response response = await http.get(url);
+    if (response.statusCode == 200) {
+      map = jsonDecode(response.body);
+      box.write("id", map['id']);
+      box.write("name",map['name']);
+      setState(() {
+        loginScreen=map['id'];
+      });
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>mainScreen(id: loginScreen,)), (route) => false);
+
+    } else if (response.statusCode == 404) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                  title: Text("Error"),
+                  content: Text("Email or Password Incorrect"),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Okay"))
+                  ]));
     }
-    else if(response.statusCode==404){
-      showDialog(context: context, builder: (context)=>AlertDialog(title:Text("Error"),content:Text("Email or Password Incorrect"),actions:[
-        ElevatedButton(
-
-            onPressed:(){Navigator.pop(context);} , child: Text("Okay"))
-      ]));
-    }
-
     print(json.decode(response.body));
+    print("User Id==>${map['id']}");
   }
+ final box = GetStorage();
   @override
   Widget build(BuildContext context) {
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: plte.btnColor));
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: plte.btnColor));
     return Scaffold(
       backgroundColor: plte.backgroundColor,
       body: Stack(
@@ -81,7 +101,7 @@ class _loginScreenState extends State<loginScreen> {
                         height: 5,
                       ),
                       Text(
-                        "LogIn to continue",
+                        "LogIn to continue ",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       )
@@ -110,7 +130,6 @@ class _loginScreenState extends State<loginScreen> {
                       key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
-
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
@@ -123,23 +142,22 @@ class _loginScreenState extends State<loginScreen> {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  errorStyle: TextStyle(
-                                    letterSpacing: 1,
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                  prefixIcon: Icon(
-                                    Icons.account_circle_outlined,
-                                    color: plte.iconColor,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
-                                  ),
-                                  contentPadding: EdgeInsets.all(8.0),
-                                  hintText: "Enter your Email",
-                                  labelText: "Email"
-                                ),
+                                    errorStyle: TextStyle(
+                                      letterSpacing: 1,
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.account_circle_outlined,
+                                      color: plte.iconColor,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                    ),
+                                    contentPadding: EdgeInsets.all(8.0),
+                                    hintText: "Enter your Email",
+                                    labelText: "Email"),
                               ),
                             ),
                             SizedBox(
@@ -151,7 +169,6 @@ class _loginScreenState extends State<loginScreen> {
                                   return "Required";
                                 }
                               },
-
                               obscureText: true,
                               obscuringCharacter: '*',
                               decoration: InputDecoration(
@@ -166,7 +183,7 @@ class _loginScreenState extends State<loginScreen> {
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
+                                      BorderRadius.all(Radius.circular(30.0)),
                                 ),
                                 contentPadding: EdgeInsets.all(8.0),
                                 hintText: "Enter Password",
@@ -174,14 +191,14 @@ class _loginScreenState extends State<loginScreen> {
                               ),
                               controller: passwordcon,
                             ),
-              SizedBox(height: 20,)
-              ,],
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  )
-              )
-          ),
+                  ))),
           Positioned(
             top: 430,
             child: Column(
@@ -193,30 +210,33 @@ class _loginScreenState extends State<loginScreen> {
                       minWidth: 100,
                       splashColor: plte.textColor,
                       shape: StadiumBorder(),
-                      child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                      child: Text(
+                        "LogIn",
+                        style: TextStyle(
+                            color: plte.textColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
                       color: plte.btnColor,
-
-                      onPressed: (){
-                        if (_formkey.currentState.validate())
-                          login();
-                          //gettingdata();
-
-                        }),
-                )
-                ,
+                      onPressed: () {
+                        if (_formkey.currentState.validate()) login();
+                        //gettingdata();
+                      }),
+                ),
                 Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 70),
-                      child: Text("Don't have an account?",style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        "Don't have an account?",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-
                     TextButton(
-
                       child: Text("Sign Up"),
-                      onPressed: (){
+                      onPressed: () {
                         setState(() {
-                         Navigator.pushNamed(context, MyRoutes.signUp);
+                          Navigator.pushNamed(context, MyRoutes.signUp);
                         });
                       },
                     ),
