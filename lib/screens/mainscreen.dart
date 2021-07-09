@@ -133,7 +133,9 @@ class _mainScreenState extends State<mainScreen> {
                               color: plte.activateColor,
                               iconSize: 70,
                               splashColor: plte.btnColor,
-                              onPressed: () {}),
+                              onPressed: () {
+                                Navigator.pushNamed(context, MyRoutes.statusScreen);
+                              }),
                           Text(
                             "Your Complaint Status",
                             style: TextStyle(

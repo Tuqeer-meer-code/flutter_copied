@@ -14,7 +14,7 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
- int loginScreen;
+  int loginScreen;
   bool visible = false;
   Map<String, dynamic> map;
   var _formkey = GlobalKey<FormState>();
@@ -36,16 +36,19 @@ class _loginScreenState extends State<loginScreen> {
     if (response.statusCode == 200) {
       map = jsonDecode(response.body);
       box.write("id", map['id']);
-      box.write("name",map['name']);
+      box.write("name", map['name']);
+      box.write("email", map['email']);
       setState(() {
-        loginScreen=map['id'];
+        loginScreen = map['id'];
       });
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>mainScreen(id: loginScreen,)), (route) => false);
-
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+          builder: (context) => mainScreen(id: loginScreen,)), (
+          route) => false);
     } else if (response.statusCode == 404) {
       showDialog(
           context: context,
-          builder: (context) => AlertDialog(
+          builder: (context) =>
+              AlertDialog(
                   title: Text("Error"),
                   content: Text("Email or Password Incorrect"),
                   actions: [
@@ -59,10 +62,11 @@ class _loginScreenState extends State<loginScreen> {
     print(json.decode(response.body));
     print("User Id==>${map['id']}");
   }
- final box = GetStorage();
+
+  final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
-
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: plte.btnColor));
     return Scaffold(
@@ -113,7 +117,10 @@ class _loginScreenState extends State<loginScreen> {
               top: 200,
               child: Container(
                   height: 220,
-                  width: MediaQuery.of(context).size.width - 40,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                       color: plte.backgroundColor,
@@ -183,7 +190,7 @@ class _loginScreenState extends State<loginScreen> {
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
+                                  BorderRadius.all(Radius.circular(30.0)),
                                 ),
                                 contentPadding: EdgeInsets.all(8.0),
                                 hintText: "Enter Password",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:uscb/screens/drawer.dart';
 import 'package:uscb/screens//pallete.dart';
 class EmpmainScreen extends StatefulWidget {
@@ -8,10 +9,10 @@ class EmpmainScreen extends StatefulWidget {
 }
 
 class _EmpmainScreenState extends State<EmpmainScreen> {
+  final emp = GetStorage();
   @override
-  var name="TUQEER";
   Widget build(BuildContext context) {
-
+    final String name=emp.read("name");
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: plte.btnColor));
 

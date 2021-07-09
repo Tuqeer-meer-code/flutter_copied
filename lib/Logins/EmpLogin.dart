@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:uscb/Routes/MyRoutes.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:uscb/Employee/employee_mainScreen.dart';
+import 'package:uscb/api/api.dart';
 import '../screens/pallete.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
+
 class employeeLogin extends StatefulWidget {
   @override
   _employeeLoginState createState() => _employeeLoginState();
@@ -9,8 +13,41 @@ class employeeLogin extends StatefulWidget {
 
 class _employeeLoginState extends State<employeeLogin> {
   var _formkey = GlobalKey<FormState>();
-  final emailconn=TextEditingController();
-  final password1=TextEditingController();
+  final emailcon = TextEditingController();
+  final passwordcon = TextEditingController();
+  Map <String, dynamic> map;
+
+  login() async {
+    print("login Called");
+    var url = Uri.parse(
+        Api.empLogin + "?Email=${emailcon.text}&Password=${passwordcon.text}");
+    http.Response response = await http.get(url);
+    if (response.statusCode == 200) {
+      print(response.body);
+      map = jsonDecode(response.body);
+      emp.write("id", map['InchargeId']);
+      emp.write("name", map['name']);
+      emp.write("design", map['designation']);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+          builder: (context) => EmpmainScreen()), (route) => false);
+    } else if (response.statusCode == 404) {
+      showDialog(
+          context: context,
+          builder: (context) =>
+              AlertDialog(
+                  title: Text("Error"),
+                  content: Text("Email or Password Incorrect"),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Okay"))
+                  ]));
+    }
+  }
+
+  final emp = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +99,10 @@ class _employeeLoginState extends State<employeeLogin> {
               top: 200,
               child: Container(
                   height: 220,
-                  width: MediaQuery.of(context).size.width - 40,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 40,
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                       color: plte.backgroundColor,
@@ -89,7 +129,7 @@ class _employeeLoginState extends State<employeeLogin> {
                                   if (value.isEmpty) {
                                     return "Required";
                                   }
-                                },controller: emailconn,
+                                }, controller: emailcon,
                                 decoration: InputDecoration(
                                     errorStyle: TextStyle(
                                       letterSpacing: 1,
@@ -140,10 +180,11 @@ class _employeeLoginState extends State<employeeLogin> {
                                 hintText: "Enter Password",
                                 labelText: "Password",
                               ),
-                              controller: password1,
+                              controller: passwordcon,
                             ),
                             SizedBox(height: 20,)
-                            ,],
+                            ,
+                          ],
                         ),
                       ),
                     ),
@@ -161,13 +202,17 @@ class _employeeLoginState extends State<employeeLogin> {
                       minWidth: 100,
                       splashColor: plte.textColor,
                       shape: StadiumBorder(),
-                      child: Text("LogIn",style: TextStyle(color: plte.textColor,fontSize: 16,fontWeight: FontWeight.bold),),
+                      child: Text("LogIn", style: TextStyle(
+                          color: plte.textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),),
                       color: plte.btnColor,
 
-                      onPressed: (){
+                      onPressed: () {
                         if (_formkey.currentState.validate()) {
-                           Navigator.pushNamed(context, MyRoutes.EmpMainScreen);
-                        }}),
+                          login();
+                        }
+                      }),
                 )
               ],
             ),
@@ -176,4 +221,4 @@ class _employeeLoginState extends State<employeeLogin> {
       ),
     );
   }
-  }
+}

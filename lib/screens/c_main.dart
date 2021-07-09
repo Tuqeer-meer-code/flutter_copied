@@ -72,24 +72,6 @@ String c_main;
                     ),
                     FlatButton.icon(
                       onPressed: () {
-                        c_main="Water";
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return complaintScreen(value : c_main);
-                        }));
-                      },
-                      icon: Icon(Icons.water_damage_outlined,color: Colors.white,),
-                      label: Text("Water",style: TextStyle(color: plte.tCardColor,fontSize: 18,fontWeight: FontWeight.bold),),
-                      color: plte.btnColor,
-                      shape: StadiumBorder(),
-                      splashColor: plte.backgroundColor,
-                      minWidth: 150,
-                      padding: EdgeInsets.all(10),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    FlatButton.icon(
-                      onPressed: () {
                         c_main="Internet";
                         Navigator.push(context, MaterialPageRoute(builder: (context){
                           return complaintScreen(value : c_main);
