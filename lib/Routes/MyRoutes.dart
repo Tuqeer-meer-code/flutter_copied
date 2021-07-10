@@ -11,4 +11,6 @@ class MyRoutes{
   static String EmpMainScreen="/Employee Main screen page";
   static String add="/customer will add consumer numbers";
   static String statusScreen="/complain status";
+  static String empViewComplaintsPage="/Emp side main page for viewing complaints";
+  static String empViewComplainMain="/real main Screen To show complain on employee side";
 }

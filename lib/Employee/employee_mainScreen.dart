@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:uscb/Routes/MyRoutes.dart';
 import 'package:uscb/screens/drawer.dart';
 import 'package:uscb/screens//pallete.dart';
 class EmpmainScreen extends StatefulWidget {
@@ -76,7 +77,10 @@ class _EmpmainScreenState extends State<EmpmainScreen> {
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: () {}),
+                      onPressed: ()
+                      {
+                        Navigator.pushNamed(context, MyRoutes.empViewComplaintsPage);
+                      }),
                   Text(
                     "View Complaint",
                     style: TextStyle(
@@ -90,7 +94,8 @@ class _EmpmainScreenState extends State<EmpmainScreen> {
                       color: Colors.white,
                       iconSize: 70,
                       splashColor: plte.btnColor,
-                      onPressed: (){} ),
+                      onPressed: (){
+                      } ),
                   Text(
                     "Update Status",
                     style: TextStyle(

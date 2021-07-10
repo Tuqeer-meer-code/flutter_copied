@@ -25,7 +25,7 @@ class _employeeLoginState extends State<employeeLogin> {
     if (response.statusCode == 200) {
       print(response.body);
       map = jsonDecode(response.body);
-      emp.write("id", map['InchargeId']);
+      emp.write("id", map['InchargeId1']);
       emp.write("name", map['name']);
       emp.write("design", map['designation']);
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(

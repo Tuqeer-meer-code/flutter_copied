@@ -11,6 +11,8 @@ import 'package:uscb/Logins/mainLoginClassForEmpUser.dart';
 import 'package:uscb/screens/mainscreen.dart';
 import 'package:uscb/Logins/signup.dart';
 import 'Employee/employee_mainScreen.dart';
+import 'Employee/viewComplaintsMain.dart';
+import 'Employee/viewCoplaints.dart';
 import 'Logins/EmpLogin.dart';
 import 'Logins/SignUpLoginButton.dart';
 
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.EmpMainScreen: (context) => EmpmainScreen(),
           MyRoutes.add: (context) => consumerDetail(),
           MyRoutes.statusScreen:(context)=>Complaintstatus(),
+          MyRoutes.empViewComplaintsPage:(context)=>viewComplaints(),
+          MyRoutes.empViewComplainMain:(context)=>viewComplaintsMian(),
         });
   }
 }
