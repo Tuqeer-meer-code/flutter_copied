@@ -108,7 +108,7 @@ class _consumerDetailState extends State<consumerDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Consumer Numbers ${widget.userId} "),
+        title: Text("List Consumer Numbers ${widget.userId} "),
         shadowColor: Colors.black,
         backgroundColor: plte.btnColor,
       ),
@@ -132,7 +132,7 @@ class _consumerDetailState extends State<consumerDetail> {
                     // borderSide: BorderSide.none
                 ),
                 contentPadding: EdgeInsets.all(10.0),
-                  labelText: "Add Electric Consumer No",
+                  labelText: "List Electric Consumer No",
                 labelStyle: TextStyle(color: Colors.white),
                 hintStyle: TextStyle(color: Colors.white)),
           style: TextStyle(color: Colors.white),
@@ -152,7 +152,7 @@ class _consumerDetailState extends State<consumerDetail> {
                           // borderSide: BorderSide.none
                         ),
                         contentPadding: EdgeInsets.all(10.0),
-                        labelText: "Add Hint",
+                        labelText: "List Hint",
                         labelStyle: TextStyle(color: Colors.white),
                         hintStyle: TextStyle(color: Colors.white)),
                     style: TextStyle(color: Colors.white),
@@ -165,7 +165,7 @@ class _consumerDetailState extends State<consumerDetail> {
                     splashColor: plte.textColor,
                     shape: StadiumBorder(),
                     child: Text(
-                      "Add",
+                      "List",
                       style: TextStyle(
                           color: plte.textColor,
                           fontSize: 16,
@@ -190,7 +190,7 @@ class _consumerDetailState extends State<consumerDetail> {
                           // borderSide: BorderSide.none
                         ),
                         contentPadding: EdgeInsets.all(10.0),
-                        labelText: "Add Gas Consumer No",
+                        labelText: "List Gas Consumer No",
                         labelStyle: TextStyle(color: Colors.white),
                         hintStyle: TextStyle(color: Colors.white)),
                     style: TextStyle(color: Colors.white),
@@ -210,7 +210,7 @@ class _consumerDetailState extends State<consumerDetail> {
                           // borderSide: BorderSide.none
                         ),
                         contentPadding: EdgeInsets.all(10.0),
-                        labelText: "Add Hint",
+                        labelText: "List Hint",
                         labelStyle: TextStyle(color: Colors.white),
                         hintStyle: TextStyle(color: Colors.white)),
                     style: TextStyle(color: Colors.white),
@@ -223,7 +223,7 @@ class _consumerDetailState extends State<consumerDetail> {
                     splashColor: plte.textColor,
                     shape: StadiumBorder(),
                     child: Text(
-                      "Add",
+                      "List",
                       style: TextStyle(
                           color: plte.textColor,
                           fontSize: 16,

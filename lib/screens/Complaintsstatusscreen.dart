@@ -55,15 +55,16 @@ class _ComplaintstatusState extends State<Complaintstatus> {
                     contentPadding: EdgeInsets.all(10),
                     title: Text(
                       data[index]["Issue"] +
-                          " - " +
+                          " --- " +
                           data[index]["ComplaintDescrption"],
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontSize: 22
                       ),
                     ),
-                    subtitle: Text(data[index]["date"]),
+                    subtitle: Text(data[index]["date"],style: TextStyle(color: Colors.deepOrangeAccent),),
                     trailing: Text(data[index]["status"],style: TextStyle(
-                  backgroundColor: plte.btnColor,letterSpacing: 2),),
+                  backgroundColor: plte.btnColor,letterSpacing: 2,fontSize: 18),),
                   ),
                 );
               },

@@ -58,7 +58,10 @@ class _viewComplaintsMianState extends State<viewComplaintsMian> {
                       child: ListTile(
                         contentPadding: EdgeInsets.all(10),
                         title: Text(
-                          data[index]["Issue"] + " - " + data[index]["date"],
+                          "Consumer No=${data[index]["consumer_no"]}\n" +
+                              data[index]["Issue"] +
+                              " - " +
+                              data[index]["date"],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -73,20 +76,20 @@ class _viewComplaintsMianState extends State<viewComplaintsMian> {
                           showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
-                                  title: Text("Update Status"),
-                                  content: TextField(
-                                    controller: update,
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          return updateData(index);
-                                        },
-                                        child: Text("Okay"))
-                                  ]));
+                                      title: Text("Update Status"),
+                                      content: TextField(
+                                        controller: update,
+                                      ),
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              return updateData(index,update);
+                                            },
+                                            child: Text("Okay"))
+                                      ]));
                           print(data[index]);
-                          },
+                        },
                       ),
                     );
                   },
@@ -94,58 +97,59 @@ class _viewComplaintsMianState extends State<viewComplaintsMian> {
               ),
             ],
           )),
-    );}
-    updateData(int index)async{
-    print("updatingdata");
-    print(Api.updateStatus);
-     var d={
-      "complain_id": "${data[index]["complain_id"]}",
-       "consumer_no": "${data[index]["consumer_no"]}",
-       "UtilityType": "${data[index]["UtilityType"]}",
-       "Issue": "${data[index]["Issue"]}",
-       "ComplaintDescrption": "${data[index]["ComplaintDescrption"]}",
-       "house_address": "${data[index]["house_address"]}",
-       "Attachements": "${data[index]["Attachements"]}",
-       "status": "${data[index]["${update.text}"]}",
-       "date": "${data[index]["date"]}",
-       "id": "${data[index]["id"]}",
-       "feeder_no": "${data[index]["feeder_no"]}",
-
-     };
-    http.Response response=await http.post(Uri.parse(Api.updateStatus),body:d);
-    var responsedata=json.decode(response.body);
-    print(responsedata);
-    if(responsedata=="Complain is Modified"){
-      print("Done");
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-              title: Text("Success"),
-              content: Text("Response Status Changed to ==> ${update.text}"),
-              actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Okay"))
-              ]));
-
-    }
-    if(responsedata=="User not Found"){
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-              title: Text("Error"),
-              content: Text("Something Wrong"),
-              actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Okay"))
-              ]));
-
-    }
+    );
   }
 
+  updateData(int index ,TextEditingController a ) async {
+    print("Prinitin update controller ");
+    print("updatingdata");
+    print(Api.updateStatus + "?complain_id=${data[index]["complain_id"]}");
+    var d = {
+      "complain_id": "${data[index]["complain_id"]}",
+      "consumer_no": "${data[index]["consumer_no"]}",
+      "UtilityType": "${data[index]["UtilityType"]}",
+      "Issue": "${data[index]["Issue"]}",
+      "ComplaintDescrption": "${data[index]["ComplaintDescrption"]}",
+      "house_address": "${data[index]["house_address"]}",
+      "Attachements": "${data[index]["Attachements"]}",
+      "status": "${a.text}",
+      "date": "${data[index]["date"]}",
+      "id": "${data[index]["id"]}",
+      "feeder_no": "${data[index]["feeder_no"]}",
+    };
+    http.Response response =
+        await http.post(Uri.parse(Api.updateStatus), body: d);
+    var responsedata = json.decode(response.body);
+    print(responsedata);
+    if (responsedata == "Complain is Modified") {
+      print("Done==>Status Changed to ${update.text}");
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                  title: Text("Success"),
+                  content:
+                      Text("Response Status Changed to ==> ${update.text}"),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Okay"))
+                  ]));
+    }
+    if (responsedata == "User not Found") {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                  title: Text("Error"),
+                  content: Text("Something Wrong"),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Okay"))
+                  ]));
+    }
+  }
 }
