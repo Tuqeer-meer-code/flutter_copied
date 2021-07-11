@@ -22,6 +22,7 @@ class _mainScreenState extends State<mainScreen> {
   Widget build(BuildContext context) {
     final int id = box.read("id");
     final name =box.read("name");
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: plte.btnColor));
 

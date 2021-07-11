@@ -1,46 +1,58 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:uscb/api/api.dart';
 import 'pallete.dart';
+import 'package:http/http.dart' as http;
+
 class complaintScreen extends StatefulWidget {
   String value;
+
   complaintScreen({this.value});
+
   @override
   _complaintScreenState createState() => _complaintScreenState(value);
 }
+
 class _complaintScreenState extends State<complaintScreen> {
   String value;
   String company;
   String cIssue;
-  _complaintScreenState(this.value);
- final InternetComplaintIssue={
-   "1":"3G/4G Related Isseu",
-   "2":"Account Related Issue",
-   "3":"Billing(Overcharging/Tarrif etc)",
-   "4":"Bio Metric Vericfication Issue",
-   "5":"Fraudulant Calls/SMS",
-   "6":"Illegal Use Of CNIC",
-   "7":"Quality of Service",
-   "8":"Spamming/Bulk Sms"
 
- };
-  final WaterComplaintIsue={
-    "1":"Broken PipeLines",
-    "2":"Damaged water supply",
-    "3":"Demand for Water Supply",
-    "4":"Genral Complaint",
-    "5":"Shortage of Water Supply"
+  _complaintScreenState(this.value);
+
+  final InternetComplaintIssue = {
+    "1": "3G/4G Related Isseu",
+    "2": "Account Related Issue",
+    "3": "Billing(Overcharging/Tarrif etc)",
+    "4": "Bio Metric Vericfication Issue",
+    "5": "Fraudulant Calls/SMS",
+    "6": "Illegal Use Of CNIC",
+    "7": "Quality of Service",
+    "8": "Spamming/Bulk Sms"
   };
-  final GasComplaintIsue={"1": "Billing complaint",
-  "2": "complaint against employee",
-  "3": "Gas Theft",
-  "4": "Excess Billing",
-  "5": "Gas leakage",
-  "6": "Genral Complaint",
-  "7": "Installation of new connection",
-  "8": "Low Gas",
-  "9": "Non Delivery of Bill",
-  "10": "Replacement of defective Meter",
-  "11": "Violation of Load management shedule",};
+  final WaterComplaintIsue = {
+    "1": "Broken PipeLines",
+    "2": "Damaged water supply",
+    "3": "Demand for Water Supply",
+    "4": "Genral Complaint",
+    "5": "Shortage of Water Supply"
+  };
+  final GasComplaintIsue = {
+    "1": "Billing complaint",
+    "2": "complaint against employee",
+    "3": "Gas Theft",
+    "4": "Excess Billing",
+    "5": "Gas leakage",
+    "6": "Genral Complaint",
+    "7": "Installation of new connection",
+    "8": "Low Gas",
+    "9": "Non Delivery of Bill",
+    "10": "Replacement of defective Meter",
+    "11": "Violation of Load management shedule",
+  };
   final ElectriccomplaintIsue = {
     "1": "Billing complaint",
     "2": "complaint against employee",
@@ -55,33 +67,32 @@ class _complaintScreenState extends State<complaintScreen> {
     "11": "Violation of Load management shedule",
   };
   final internet = {
-    "1": "NayaTel",
-    "2": "SPA",
-    "3": "Pak Telecommunication",
-    "4": "Paknet",
-    "5": "Supernet Limited",
-    "6": "Wateen Telecom",
-    "7": "Wi-Tribe",
-    "8": "WorldCall",
+
   };
   final electric = {
-    "1": "FESCO",
-    "2": "GEPCO",
-    "3": "HESCO",
-    "4": "SEPCO",
-    "5": "KESC",
-    "6": "MEPCO",
-    "7": "TESKO",
-    "8": "KAPCO",
-  };
+   };
   final gas = {
-    "1": "Kadwani Gas",
-    "2": "Qadirpur Gas",
-    "3": "Sawan Gas",
-    "4": "Sui Gas",
-    "5": "Tal Block",
-  };
+   };
   List<DropdownMenuItem<String>> menuitems = [];
+  List data = [];
+  final box = GetStorage();
+
+  getconsumersEmp() async {
+    print("Getting consumer details");
+    http.Response response = await http
+        .get(Uri.parse(Api.gettinConsumerNumbers + "?id=${box.read("id")}"));
+    print(json.decode(response.body));
+    var body = json.decode(response.body);
+    setState(() {
+      data = json.decode(response.body);
+    });
+  }
+
+  @override
+  void initState() {
+    getconsumersEmp();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +107,9 @@ class _complaintScreenState extends State<complaintScreen> {
             "Register Complaint of $value",
             style: TextStyle(color: plte.textColor),
           )),
-           backgroundColor: plte.backgroundColor,
+          backgroundColor: plte.backgroundColor,
         ),
-        body: Material(
-            color: plte.backgroundColor, child: singlescroll()),
+        body: Material(color: plte.backgroundColor, child: singlescroll()),
       ),
     );
   }
@@ -126,8 +136,21 @@ class _complaintScreenState extends State<complaintScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
+          Card(
+            elevation: 5,
+            shadowColor: Colors.deepPurpleAccent,
+            color: plte.btnColor,
+            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
+            child: ListTile(
+              title: Text("Select Your Consumer Number"),
+              onTap: () {
 
-          text("Select Your Consumer Number"),
+              },
+            ),
+          ),
           SizedBox(height: 10),
           Card(
             elevation: 5,
@@ -167,8 +190,9 @@ class _complaintScreenState extends State<complaintScreen> {
               title: textfield("Attachmments"),
             ),
           ),
-          SizedBox(height: 20,)
-          ,
+          SizedBox(
+            height: 20,
+          ),
           MaterialButton(
               elevation: 1.5,
               minWidth: 150,
@@ -306,15 +330,15 @@ class _complaintScreenState extends State<complaintScreen> {
         gasF();
       });
     }
-    if(value=="Water"){
-      menuitems=[];
+    if (value == "Water") {
+      menuitems = [];
       setState(() {
         menuitems.add(
             DropdownMenuItem(value: "1", child: Text("Municipal Services")));
       });
     }
-    if(value=="Garbage"){
-      menuitems=[];
+    if (value == "Garbage") {
+      menuitems = [];
       setState(() {
         menuitems.add(
             DropdownMenuItem(value: "1", child: Text("Municipal Services")));
@@ -350,22 +374,31 @@ class _complaintScreenState extends State<complaintScreen> {
       ));
     }
   }
-  void GasIssueC3(){
-    for(String k in GasComplaintIsue.keys){
-      menuitems.add(DropdownMenuItem(value: GasComplaintIsue[k],
-      child: Text(GasComplaintIsue[k]),));
+
+  void GasIssueC3() {
+    for (String k in GasComplaintIsue.keys) {
+      menuitems.add(DropdownMenuItem(
+        value: GasComplaintIsue[k],
+        child: Text(GasComplaintIsue[k]),
+      ));
     }
   }
-  void WaterIssueC3(){
-    for(String k in WaterComplaintIsue.keys){
-      menuitems.add(DropdownMenuItem(value: WaterComplaintIsue[k],
-        child: Text(WaterComplaintIsue[k]),));
+
+  void WaterIssueC3() {
+    for (String k in WaterComplaintIsue.keys) {
+      menuitems.add(DropdownMenuItem(
+        value: WaterComplaintIsue[k],
+        child: Text(WaterComplaintIsue[k]),
+      ));
     }
   }
-  void InternetIssueC3(){
-    for(String k in InternetComplaintIssue.keys){
-      menuitems.add(DropdownMenuItem(value: InternetComplaintIssue[k],
-        child: Text(InternetComplaintIssue[k]),));
+
+  void InternetIssueC3() {
+    for (String k in InternetComplaintIssue.keys) {
+      menuitems.add(DropdownMenuItem(
+        value: InternetComplaintIssue[k],
+        child: Text(InternetComplaintIssue[k]),
+      ));
     }
   }
 }

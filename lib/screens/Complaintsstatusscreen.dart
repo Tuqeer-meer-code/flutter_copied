@@ -20,7 +20,6 @@ class _ComplaintstatusState extends State<Complaintstatus> {
     print(json.decode(response.body));
     var body=json.decode(response.body);
     setState(() {
-      //title=body[""]
       data = json.decode(response.body);
     });
   }

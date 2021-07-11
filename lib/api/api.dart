@@ -12,4 +12,5 @@ class Api {
   static const String viewComplainEmpSide =
       "$api/finalYearProject/api/Emp/viewComplains";
   static const String updateStatus="$api/finalYearProject/api/Emp/updateComplaint";
+static const String gettinConsumerNumbers="$api/finalYearProject/api/uscb/GettingConsumerList";
 }
